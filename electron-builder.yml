@@ -39,10 +39,14 @@ win:
   icon: assets/icon.png
 
 nsis:
+  artifactName: OmniYap-${version}-win-${arch}-setup.${ext}
   oneClick: false
   allowToChangeInstallationDirectory: true
   perMachine: false
   createDesktopShortcut: always
+
+portable:
+  artifactName: OmniYap-${version}-win-${arch}-portable.${ext}
 
 mac:
   target:
