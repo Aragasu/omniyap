@@ -54,7 +54,7 @@ export default definePlugin({
         };
 
         const apply = () => {
-            const ranges = [];
+            const ranges = { blur: [], bar: [] };
             for (const row of document.querySelectorAll(messages.selector)) {
                 const info = messages.info(row);
                 const message = info.message;
@@ -91,14 +91,17 @@ export default definePlugin({
                             const range = new Range();
                             range.setStart(node, start);
                             range.setEnd(node, end);
-                            ranges.push(range);
+                            ranges[mode === "bar" ? "bar" : "blur"].push(range);
                         }
                     }
                 } else {
                     row.removeAttribute("data-omniyap-wf-open");
                 }
             }
-            if (supported) CSS.highlights.set("omniyap-wf", new Highlight(...ranges));
+            if (supported) {
+                CSS.highlights.set("omniyap-wf-blur", new Highlight(...ranges.blur));
+                CSS.highlights.set("omniyap-wf-bar", new Highlight(...ranges.bar));
+            }
         };
 
         const onClick = (event) => {
@@ -111,7 +114,8 @@ export default definePlugin({
         };
 
         ctx.css(`
-            ::highlight(omniyap-wf){color:transparent;text-shadow:0 0 7px rgba(225,225,232,.95)}
+            ::highlight(omniyap-wf-blur){color:transparent;text-shadow:0 0 7px rgba(225,225,232,.95)}
+            ::highlight(omniyap-wf-bar){color:transparent;background-color:#6b6d79}
             .msg[data-omniyap-wf]{cursor:pointer}
             .msg[data-omniyap-wf="hide"]:not([data-omniyap-wf-open]) > .msg-body > :not(.msg-head),
             .msg[data-omniyap-wf="hide"]:not([data-omniyap-wf-open]) > .msg-actions{display:none!important}
@@ -132,7 +136,10 @@ export default definePlugin({
         }));
         ctx.cleanup(() => {
             document.removeEventListener("click", onClick, true);
-            if (supported) CSS.highlights.delete("omniyap-wf");
+            if (supported) {
+                CSS.highlights.delete("omniyap-wf-blur");
+                CSS.highlights.delete("omniyap-wf-bar");
+            }
             document.querySelectorAll(".msg[data-omniyap-wf]").forEach((row) => {
                 row.removeAttribute("data-omniyap-wf");
                 row.removeAttribute("data-omniyap-wf-open");
