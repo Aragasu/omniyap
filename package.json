@@ -11,7 +11,7 @@
   "desktopName": "omniyap.desktop",
   "license": "GPL-3.0-or-later",
   "private": true,
-  "homepage": "https://github.com/omniyap/omniyap",
+  "homepage": "https://aragasu.github.io/omniyap/",
   "scripts": {
     "build": "node build.mjs",
     "dev": "node build.mjs && electron .",

@@ -10,7 +10,9 @@ function detectOS() {
     const ua = navigator.userAgent || "";
     const platform = (navigator.userAgentData?.platform || navigator.platform || "").toLowerCase();
     let key = "unknown";
-    if (/win/i.test(platform) || /windows/i.test(ua)) key = "windows";
+    const forced = new URLSearchParams(location.search).get("os")?.toLowerCase();
+    if (["windows", "macos", "linux", "android"].includes(forced)) key = forced;
+    else if (/win/i.test(platform) || /windows/i.test(ua)) key = "windows";
     else if (/mac/i.test(platform) || /mac os x|macintosh/i.test(ua)) key = "macos";
     else if (/linux|x11/i.test(platform) || /linux/i.test(ua)) key = "linux";
     else if (/android/i.test(ua)) key = "android";
