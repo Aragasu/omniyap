@@ -15,7 +15,9 @@ const SITE = 'https://www.yapper.website';
 const ALLOWED = new Set(['www.yapper.website', 'yapper.website', 'rt.yapper.website', 'lk.yapper.website']);
 const IS_DEV = !app.isPackaged;
 const VERSION = require('../../package.json').version;
-const ICON = path.join(__dirname, '../../assets/icon.png');
+// build.mjs copies the icons into dist/, which is packaged inside the asar.
+const ICON = path.join(__dirname, '../../dist/icon.png');
+const TRAY_ICON = path.join(__dirname, '../../dist/tray.png');
 const PRELOAD = path.join(__dirname, '../preload/index.js');
 
 const settings = new Settings();
@@ -283,7 +285,7 @@ function saveWindowState() {
 
 function createTray() {
     if (!settings.get('omniyap.tray', true)) return;
-    let image = nativeImage.createFromPath(ICON);
+    let image = nativeImage.createFromPath(TRAY_ICON);
     if (image.isEmpty()) image = nativeImage.createEmpty();
     tray = new Tray(image.resize({ width: 20, height: 20 }));
     tray.setToolTip('OmniYap');
