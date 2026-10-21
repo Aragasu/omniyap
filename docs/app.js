@@ -61,7 +61,7 @@ function assetLabel(name) {
     if (lower.endsWith(".deb")) return "Debian / Ubuntu (.deb)";
     if (lower.endsWith(".rpm")) return "Fedora (.rpm)";
     if (lower.endsWith(".tar.gz")) return "Linux archive (.tar.gz)";
-    if (lower.endsWith(".exe")) return "Windows installer";
+    if (lower.endsWith(".exe")) return /portable/i.test(name) ? "Windows portable" : "Windows installer";
     if (lower.endsWith(".dmg")) return "macOS disk image";
     if (lower.endsWith(".zip")) return "ZIP archive";
     if (lower.endsWith(".apk")) return "Android APK";
@@ -108,7 +108,7 @@ async function initDownloads() {
         meta.textContent = `${asset.name} · ${formatBytes(asset.size)} · ${release.published_at ? new Date(release.published_at).toLocaleDateString(undefined, { dateStyle: "medium" }) : "latest"}`;
     } else {
         main.href = RELEASES;
-        main.setAttribute("aria-disabled", "true");
+        main.removeAttribute("aria-disabled");
         label.textContent = `View ${os.label} builds`;
         meta.textContent = `No ${os.label} build in ${version}. Open GitHub for every release and platform.`;
     }
