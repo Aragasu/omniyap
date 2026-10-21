@@ -57,10 +57,10 @@ npm run package:win     # NSIS installer + portable (run on Windows, or with Win
 npm run package:mac     # dmg + zip (must run on macOS to sign/notarise)
 ```
 
-Verified locally with `npm run package:linux`: the AppImage, `.deb` and `.tar.gz` build, the `.deb`
-metadata is correct, and the AppImage was launched from `release/` and reported 97 plugins, a ready
-store and every new plugin starting without errors against the live site. The Windows and macOS targets are
-configured but were not built here; build them on their own platform (and sign/notarise) before shipping.
+Verified locally: the AppImage, `.deb` and `.tar.gz` build, and the packaged Linux app was launched and
+reported 97 plugins, a ready store and no plugin errors against the live site. The Windows installer and
+portable builds are produced with Wine on Linux and included in the release. The macOS targets are
+configured but must be built and signed/notarised on macOS.
 
 For Android, `bash scripts/android-build.sh` provisions a project-local JDK/SDK/Gradle and produces
 `android/app/build/outputs/apk/debug/app-debug.apk` (verified, 2.4 MB with the renderer bundle inside).
@@ -87,6 +87,11 @@ It has not been run on a device or emulator yet. See [docs/ANDROID.md](docs/ANDR
 See [docs/PLUGIN-MATRIX.md](docs/PLUGIN-MATRIX.md) for the full audit of all 365 Equicord plugin
 directories (164 base Vencord + 201 Equicord extras): 61 ported, 23 native, 67 planned, 171 blocked
 on Discord internals and 43 not applicable to Yapper.
+
+YapCord lists 110 plugins, but 19 of those are legacy `Ported_*` copies of plugins OmniYap already
+ships (`Ported_hideAttachments`, `Ported_pluginProfiles`, `Ported_unreadNavigator`, …), so its unique
+surface is smaller than the headline number. The remaining YapCord-only ideas are mostly in the
+matrix's planned column.
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how the loader works.
 
 ## Layout
