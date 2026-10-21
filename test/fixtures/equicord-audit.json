@@ -1,0 +1,1829 @@
+{
+  "rows": [
+    {
+      "name": "accountPanelServerProfile",
+      "status": "⛔ N/A",
+      "note": "Discord account panel / per-server profiles."
+    },
+    {
+      "name": "addAttachments",
+      "status": "⛔ N/A",
+      "note": "Editing attachments on an already-sent Discord message."
+    },
+    {
+      "name": "advancedPermissions",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "altKrispSwitch",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "alwaysAnimate",
+      "status": "✅ Ported",
+      "note": "Keeps animated avatars/emoji running; Yapper animates them by default."
+    },
+    {
+      "name": "alwaysExpandProfiles",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "alwaysExpandRoles",
+      "status": "⛔ N/A",
+      "note": "Discord role list UI."
+    },
+    {
+      "name": "alwaysTrust",
+      "status": "⛔ N/A",
+      "note": "Discord trusted-domain flow."
+    },
+    {
+      "name": "animalese",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "anonymiseFileNames",
+      "status": "✅ Ported",
+      "note": "Renames uploads before they leave the client."
+    },
+    {
+      "name": "arRPC",
+      "status": "⛔ N/A",
+      "note": "Discord RPC bridge."
+    },
+    {
+      "name": "atSomeone",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "autoDndWhilePlaying",
+      "status": "⛔ N/A",
+      "note": "Discord game/RPC detection."
+    },
+    {
+      "name": "autoJumpToMessage",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "autoZipper",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "bannersEverywhere",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "baseDecoder",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterActivities",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterAudioPlayer",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterBanReasons",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterBlockedUsers",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterCommands",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterFolders",
+      "status": "⛔ N/A",
+      "note": "Yapper has no server folders."
+    },
+    {
+      "name": "betterForwards",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterGifAltText",
+      "status": "✅ Ported",
+      "note": "Descriptive alt/title on GIF attachments."
+    },
+    {
+      "name": "betterGifPicker",
+      "status": "✅ Ported",
+      "note": "Larger picker, more columns, focused search."
+    },
+    {
+      "name": "betterImageEditor",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterInvites",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterPlusReacts",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "betterRoleContext",
+      "status": "⛔ N/A",
+      "note": "Discord role context menu."
+    },
+    {
+      "name": "betterRoleDot",
+      "status": "⛔ N/A",
+      "note": "Discord role dot rendering."
+    },
+    {
+      "name": "betterSessions",
+      "status": "⛔ N/A",
+      "note": "Discord account sessions."
+    },
+    {
+      "name": "betterSettings",
+      "status": "🔜 Planned",
+      "note": "Reorganise Yapper's settings modal."
+    },
+    {
+      "name": "betterUploadButton",
+      "status": "🔜 Planned",
+      "note": "Click/drop anywhere to upload."
+    },
+    {
+      "name": "biggerStreamPreview",
+      "status": "✅ Ported",
+      "note": "Enlarges stream previews."
+    },
+    {
+      "name": "blockKeywords",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "blockKrisp",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "blurNsfw",
+      "status": "🔜 Planned",
+      "note": "Needs Yapper's NSFW channel flag/UI."
+    },
+    {
+      "name": "bypassPinPrompt",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "bypassStatus",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "callTimer",
+      "status": "✅ Ported",
+      "note": "Call duration badge in the user bar/voice header."
+    },
+    {
+      "name": "channelBadges",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "channelTabs",
+      "status": "🔜 Planned",
+      "note": "Tabbed channels; not implemented yet."
+    },
+    {
+      "name": "characterCounter",
+      "status": "✅ Ported",
+      "note": "Counter above the composer."
+    },
+    {
+      "name": "cleanChannelName",
+      "status": "🔜 Planned",
+      "note": "Channel title hook; not implemented yet."
+    },
+    {
+      "name": "cleanerChannelGroups",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "clearURLs",
+      "status": "✅ Ported",
+      "note": "Strips tracking parameters from links and copies."
+    },
+    {
+      "name": "clickableRoles",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "clientSideBlock",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "clientTheme",
+      "status": "⛔ N/A",
+      "note": "Discord client theme internals; use OmniYap themes instead."
+    },
+    {
+      "name": "clipUpload",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "clipsEnhancements",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "collapsibleUi",
+      "status": "🔜 Planned",
+      "note": "Layout hook; not implemented yet."
+    },
+    {
+      "name": "colorSighted",
+      "status": "🔜 Planned",
+      "note": "Recolour Yapper presence dots."
+    },
+    {
+      "name": "commandPalette",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "consoleJanitor",
+      "status": "🔜 Planned",
+      "note": "Filter noisy console output."
+    },
+    {
+      "name": "consoleShortcuts",
+      "status": "✅ Ported",
+      "note": "Implemented as a native OmniYap plugin."
+    },
+    {
+      "name": "contentWarning",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "copyEmojiMarkdown",
+      "status": "✅ Ported",
+      "note": "Right-click emoji → shortcode / image / URL."
+    },
+    {
+      "name": "copyFileContents",
+      "status": "✅ Ported",
+      "note": "Copy buttons on code blocks."
+    },
+    {
+      "name": "copyProfileColors",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "copyStatusUrls",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "copyStickerLinks",
+      "status": "🟡 Native",
+      "note": "Yapper has no stickers."
+    },
+    {
+      "name": "copyUserMention",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "copyUserURLs",
+      "status": "🔜 Planned",
+      "note": "Add profile URLs to the native context menu."
+    },
+    {
+      "name": "crashHandler",
+      "status": "🟡 Native",
+      "note": "OmniYap shows its own offline/crash screen."
+    },
+    {
+      "name": "cursorBuddy",
+      "status": "🔜 Planned",
+      "note": "`oneko` is a similar mouse follower."
+    },
+    {
+      "name": "customCommands",
+      "status": "✅ Ported",
+      "note": "`/shortcut` expansion in the composer."
+    },
+    {
+      "name": "customFolderIcons",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "customIdle",
+      "status": "🔜 Planned",
+      "note": "Custom idle timer (`autoIdle` state exists)."
+    },
+    {
+      "name": "customRPC",
+      "status": "⛔ N/A",
+      "note": "Discord rich presence."
+    },
+    {
+      "name": "customSounds",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "customStatusTimeouts",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "customTimestamps",
+      "status": "🔜 Planned",
+      "note": "Timestamp format options are planned."
+    },
+    {
+      "name": "customUserColors",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "dearrow",
+      "status": "🔜 Planned",
+      "note": "DeArrow YouTube thumbnail service."
+    },
+    {
+      "name": "declutter",
+      "status": "🟡 Native",
+      "note": "OmniYap's **HideClutter** plugin covers the same ground."
+    },
+    {
+      "name": "decor",
+      "status": "⛔ N/A",
+      "note": "Discord avatar decorations; Yapper has decorations built in."
+    },
+    {
+      "name": "devCompanion",
+      "status": "⛔ N/A",
+      "note": "Discord dev plugin loader."
+    },
+    {
+      "name": "directFileDownload",
+      "status": "🟡 Native",
+      "note": "Downloads already go through Chromium."
+    },
+    {
+      "name": "disableCallIdle",
+      "status": "🟡 Native",
+      "note": "OmniYap disables background throttling; calls keep running."
+    },
+    {
+      "name": "disableCameras",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "discordDevBanner",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "dontRoundMyTimestamps",
+      "status": "🔜 Planned",
+      "note": "More precise timestamps."
+    },
+    {
+      "name": "downloadAllAttachments",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "dragFavoriteEmotes",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "dragify",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "elementHighlighter",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "equiTweaks",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "equibopStreamFixes",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "equicordHelper",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "equicordToolbox",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "equissant",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "exitSounds",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "experiments",
+      "status": "⛔ N/A",
+      "note": "Discord experiment system."
+    },
+    {
+      "name": "exportMessages",
+      "status": "🔜 Planned",
+      "note": "`MessageLogger` stores history; a dedicated exporter is planned."
+    },
+    {
+      "name": "expressionCloner",
+      "status": "🟡 Native",
+      "note": "Yapper lets you use emoji everywhere already."
+    },
+    {
+      "name": "f8break",
+      "status": "⛔ N/A",
+      "note": "Discord keybind internals."
+    },
+    {
+      "name": "fakeNitro",
+      "status": "🟡 Native",
+      "note": "Everything Nitro sells is free on Yapper."
+    },
+    {
+      "name": "fakeProfileThemes",
+      "status": "🟡 Native",
+      "note": "Profile themes are free on Yapper."
+    },
+    {
+      "name": "fastDeleteChannels",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "favEmojiFirst",
+      "status": "🔜 Planned",
+      "note": "Recent/favourite emoji row in the picker."
+    },
+    {
+      "name": "favoriteAnything",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "fileUpload",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "findReply",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "fixCodeblockGap",
+      "status": "🔜 Planned",
+      "note": "Pure CSS."
+    },
+    {
+      "name": "fixFileExtensions",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "fixImagesQuality",
+      "status": "✅ Ported",
+      "note": "Requests original-resolution images."
+    },
+    {
+      "name": "fixSpotifyEmbeds",
+      "status": "🟡 Native",
+      "note": "No Spotify embeds in Yapper."
+    },
+    {
+      "name": "fixYoutubeEmbeds",
+      "status": "✅ Ported",
+      "note": "nocookie host, no related videos, fullscreen."
+    },
+    {
+      "name": "followVoiceUser",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "fontLoader",
+      "status": "🔜 Planned",
+      "note": "`CustomFontFiles` imports local fonts; remote font loading is not implemented."
+    },
+    {
+      "name": "forceOwnerCrown",
+      "status": "🟡 Native",
+      "note": "Yapper already marks the owner with a crown."
+    },
+    {
+      "name": "frequentQuickSwitcher",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "friendCodes",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "friendInvites",
+      "status": "🔜 Planned",
+      "note": "Yapper has friend requests and invite links."
+    },
+    {
+      "name": "friendTags",
+      "status": "🔜 Planned",
+      "note": "Local friend tags; not implemented yet."
+    },
+    {
+      "name": "friendshipRanks",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "fullSearchContext",
+      "status": "🔜 Planned",
+      "note": "Context around search results."
+    },
+    {
+      "name": "fullUserInChatbox",
+      "status": "🔜 Planned",
+      "note": "Show full user info in mention suggestions."
+    },
+    {
+      "name": "fullVcPfp",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "gameActivityToggle",
+      "status": "🔜 Planned",
+      "note": "The desktop app already detects games; expose a toggle."
+    },
+    {
+      "name": "ghosted",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "gifCollections",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "gifMaker",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "gifPaste",
+      "status": "✅ Ported",
+      "note": "Paste a GIF/video URL → send it."
+    },
+    {
+      "name": "gifProviderSwitcher",
+      "status": "🔜 Planned",
+      "note": "If Yapper exposes multiple GIF providers."
+    },
+    {
+      "name": "githubRepos",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "globalBadges",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "googleThat",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "greetStickerPicker",
+      "status": "🟡 Native",
+      "note": "No stickers in Yapper."
+    },
+    {
+      "name": "guildPickerDumper",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "hideAttachments",
+      "status": "✅ Ported",
+      "note": "Per-channel attachment hiding with a header toggle."
+    },
+    {
+      "name": "hideChatButtons",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "hideMessages",
+      "status": "🔜 Planned",
+      "note": "`WordFilter` and `HideMedia` cover parts of this; a manager is planned."
+    },
+    {
+      "name": "hideServers",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "homeTyping",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "hopOn",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "husk",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "iLoveSpam",
+      "status": "⛔ N/A",
+      "note": "Discord in-joke plugin."
+    },
+    {
+      "name": "iRememberYou",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "iconViewer",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "idleAutoRestart",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "ignoreActivities",
+      "status": "⛔ N/A",
+      "note": "Discord activity/RPC."
+    },
+    {
+      "name": "ignoreCalls",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "imageFilename",
+      "status": "✅ Ported",
+      "note": "Filename caption under attachments."
+    },
+    {
+      "name": "imageLink",
+      "status": "🟡 Native",
+      "note": "Images inside links already open the link."
+    },
+    {
+      "name": "imageZoom",
+      "status": "✅ Ported",
+      "note": "Full-screen pan/zoom lightbox."
+    },
+    {
+      "name": "implicitRelationships",
+      "status": "⛔ N/A",
+      "note": "Discord relationship graph."
+    },
+    {
+      "name": "inRole",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "ingtoninator",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "instantScreenshare",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "invisibleChat",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "inviteDefaults",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "ircColors",
+      "status": "✅ Ported",
+      "note": "Stable per-username colours."
+    },
+    {
+      "name": "jumpTo",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "keepCurrentChannel",
+      "status": "✅ Ported",
+      "note": "Restores the last channel per server/DM."
+    },
+    {
+      "name": "keyboardNavigation",
+      "status": "🔜 Planned",
+      "note": "Full keyboard navigation; not implemented yet."
+    },
+    {
+      "name": "keyboardSounds",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "keywordNotify",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "lastActive",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "limitlessScreenshare",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "loadingQuotes",
+      "status": "🔜 Planned",
+      "note": "Quotes on the boot screen."
+    },
+    {
+      "name": "loginWithQR",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "markdownTables",
+      "status": "🔜 Planned",
+      "note": "Renderer hook for tables is planned."
+    },
+    {
+      "name": "mediaPlaybackSpeed",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "memberCount",
+      "status": "✅ Ported",
+      "note": "Real total + online count from `memberCounts`/`online`."
+    },
+    {
+      "name": "mentionAvatars",
+      "status": "✅ Ported",
+      "note": "Avatars on @mentions."
+    },
+    {
+      "name": "messageBurst",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "messageClickActions",
+      "status": "✅ Ported",
+      "note": "Middle-click quote, Shift-click copy."
+    },
+    {
+      "name": "messageColors",
+      "status": "🔜 Planned",
+      "note": "`MessageStyle` styles messages; per-message colours are planned."
+    },
+    {
+      "name": "messageFetchTimer",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "messageLatency",
+      "status": "🔜 Planned",
+      "note": "Measure send→ack round trip."
+    },
+    {
+      "name": "messageLinkEmbeds",
+      "status": "🔜 Planned",
+      "note": "Rich previews for message links."
+    },
+    {
+      "name": "messageLinkTooltip",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "messageLogger",
+      "status": "✅ Ported",
+      "note": "Local edit/delete history with viewer."
+    },
+    {
+      "name": "messageLoggerEnhanced",
+      "status": "🔜 Planned",
+      "note": "`MessageLogger` already keeps edits/deletes; the enhanced browser view is planned."
+    },
+    {
+      "name": "messageNotifier",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "messagePeek",
+      "status": "🔜 Planned",
+      "note": "Preview-on-hover for links; not implemented yet."
+    },
+    {
+      "name": "messageTranslate",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "micLoopbackTester",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "middleClickTweaks",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "moreCommands",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "moreQuickReactions",
+      "status": "✅ Ported",
+      "note": "One-click reaction bar (uses `toggleReaction`)."
+    },
+    {
+      "name": "moreStickers",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "moreUserTags",
+      "status": "🔜 Planned",
+      "note": "Needs role data beyond what Yapper exposes."
+    },
+    {
+      "name": "moyai",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "musicControls",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "musicRichPresence",
+      "status": "⛔ N/A",
+      "note": "Discord rich presence."
+    },
+    {
+      "name": "mutualGroupDMs",
+      "status": "⛔ N/A",
+      "note": "Discord group DM graph."
+    },
+    {
+      "name": "neverPausePreviews",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "newGuildSettings",
+      "status": "⛔ N/A",
+      "note": "Discord guild onboarding."
+    },
+    {
+      "name": "newPluginsManager",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "noBlockedMessages",
+      "status": "✅ Ported",
+      "note": "Hides blocked users' messages using `state.blocked`."
+    },
+    {
+      "name": "noDeepLinks",
+      "status": "⛔ N/A",
+      "note": "Browser-only."
+    },
+    {
+      "name": "noDevtoolsWarning",
+      "status": "🟡 Native",
+      "note": "Production builds do not show the warning."
+    },
+    {
+      "name": "noF1",
+      "status": "✅ Ported",
+      "note": "F1 no longer opens help."
+    },
+    {
+      "name": "noMaskedUrlPaste",
+      "status": "✅ Ported",
+      "note": "Raw URL paste instead of masked links."
+    },
+    {
+      "name": "noMiddleClickPaste",
+      "status": "✅ Ported",
+      "note": "No accidental X11 middle-click paste."
+    },
+    {
+      "name": "noMosaic",
+      "status": "✅ Ported",
+      "note": "Attachments stack instead of a mosaic."
+    },
+    {
+      "name": "noNitroUpsell",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "noOnboardingDelay",
+      "status": "✅ Ported",
+      "note": "Skips the intro."
+    },
+    {
+      "name": "noPendingCount",
+      "status": "✅ Ported",
+      "note": "Hides pending counters."
+    },
+    {
+      "name": "noProfileThemes",
+      "status": "🟡 Native",
+      "note": "Themes are free on Yapper."
+    },
+    {
+      "name": "noPushToTalk",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "noRPC",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "noReplyMention",
+      "status": "✅ Ported",
+      "note": "Replies don't re-ping the author."
+    },
+    {
+      "name": "noRoleHeaders",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "noServerEmojis",
+      "status": "✅ Ported",
+      "note": "Hides the server emoji section."
+    },
+    {
+      "name": "noSystemBadge",
+      "status": "✅ Ported",
+      "note": "Implemented as a native OmniYap plugin."
+    },
+    {
+      "name": "noTypingAnimation",
+      "status": "✅ Ported",
+      "note": "Static typing indicator."
+    },
+    {
+      "name": "noUnblockToJump",
+      "status": "⛔ N/A",
+      "note": "Discord block/jump flow."
+    },
+    {
+      "name": "normalizeMessageLinks",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "notificationTitle",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "notificationVolume",
+      "status": "🔜 Planned",
+      "note": "Attenuate notification sounds with WebAudio."
+    },
+    {
+      "name": "onePingPerDM",
+      "status": "🔜 Planned",
+      "note": "Deduplicate repeated DM pings."
+    },
+    {
+      "name": "openInApp",
+      "status": "⛔ N/A",
+      "note": "Discord link handling."
+    },
+    {
+      "name": "orbolayBridge",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "overrideForumDefaults",
+      "status": "⛔ N/A",
+      "note": "No forums."
+    },
+    {
+      "name": "partyMode",
+      "status": "🔜 Planned",
+      "note": "Cosmetic overlay; not implemented yet."
+    },
+    {
+      "name": "pauseInvitesForever",
+      "status": "🔜 Planned",
+      "note": "Depends on Yapper's invite model."
+    },
+    {
+      "name": "pendingFriendRequest",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "permissionFreeWill",
+      "status": "⛔ N/A",
+      "note": "Discord permission bitfields."
+    },
+    {
+      "name": "permissionsViewer",
+      "status": "🔜 Planned",
+      "note": "Yapper has roles but no Discord permission grid."
+    },
+    {
+      "name": "petpet",
+      "status": "✅ Ported",
+      "note": "Alt-click an avatar to pet it."
+    },
+    {
+      "name": "pictureInPicture",
+      "status": "✅ Ported",
+      "note": "PiP button on chat videos."
+    },
+    {
+      "name": "pinDms",
+      "status": "🔜 Planned",
+      "note": "Reorder the DM list locally."
+    },
+    {
+      "name": "pinIcon",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "pingNotifications",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "plainFolderIcon",
+      "status": "⛔ N/A",
+      "note": "No folders."
+    },
+    {
+      "name": "platformIndicators",
+      "status": "⛔ N/A",
+      "note": "Discord client platform badges."
+    },
+    {
+      "name": "platformSpoofer",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "polishWording",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "previewMessage",
+      "status": "🔜 Planned",
+      "note": "Preview a linked message in a popover."
+    },
+    {
+      "name": "profileSets",
+      "status": "🔜 Planned",
+      "note": "Saved profile presets; not implemented yet."
+    },
+    {
+      "name": "questify",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "quickMention",
+      "status": "✅ Ported",
+      "note": "@ button on each message."
+    },
+    {
+      "name": "quickReply",
+      "status": "✅ Ported",
+      "note": "Double-click or R to reply."
+    },
+    {
+      "name": "quickThemeSwitcher",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "quoter",
+      "status": "✅ Ported",
+      "note": "Implemented as the **Quoter** plugin."
+    },
+    {
+      "name": "randomVoice",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "reactErrorDecoder",
+      "status": "⛔ N/A",
+      "note": "Discord React error decoder."
+    },
+    {
+      "name": "reactionTimestamps",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "readAllNotificationsButton",
+      "status": "✅ Ported",
+      "note": "Marks every unread channel read."
+    },
+    {
+      "name": "recentDMSwitcher",
+      "status": "🔜 Planned",
+      "note": "DM switcher integration; not implemented yet."
+    },
+    {
+      "name": "relationshipNotifier",
+      "status": "🔜 Planned",
+      "note": "Friend request notifications."
+    },
+    {
+      "name": "remix",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "repeatMessages",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "replaceGoogleSearch",
+      "status": "🔜 Planned",
+      "note": "Search selection with another engine."
+    },
+    {
+      "name": "replyPingControl",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "replyTimestamp",
+      "status": "✅ Ported",
+      "note": "Time on reply previews (uses `reply_to_id`)."
+    },
+    {
+      "name": "revealAllSpoilers",
+      "status": "✅ Ported",
+      "note": "Unblurs spoilers."
+    },
+    {
+      "name": "reverseImageSearch",
+      "status": "🔜 Planned",
+      "note": "Lens/Yandex/TinEye from an image."
+    },
+    {
+      "name": "reviewDB",
+      "status": "⛔ N/A",
+      "note": "Discord-only service."
+    },
+    {
+      "name": "richMagnetLinks",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "richPresence",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "roleColorEverywhere",
+      "status": "🔜 Planned",
+      "note": "Yapper has roles and role colours."
+    },
+    {
+      "name": "rpcEditor",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "saveFavoriteGIFs",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "scheduledMessages",
+      "status": "🟡 Native",
+      "note": "OmniYap ships **ScheduleMessages**."
+    },
+    {
+      "name": "screenRecorder",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "searchFix",
+      "status": "🟡 Native",
+      "note": "Yapper's search already debounces and keeps focus."
+    },
+    {
+      "name": "secretRingTone",
+      "status": "🔜 Planned",
+      "note": "Yapper has ringing calls."
+    },
+    {
+      "name": "sedEnhanced",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "sekaiStickers",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "sendTimestamps",
+      "status": "🔜 Planned",
+      "note": "Insert a timestamp into the composer."
+    },
+    {
+      "name": "serverInfo",
+      "status": "✅ Ported",
+      "note": "Implemented as a native OmniYap plugin."
+    },
+    {
+      "name": "serverListIndicators",
+      "status": "✅ Ported",
+      "note": "Implemented as a native OmniYap plugin."
+    },
+    {
+      "name": "serverSearch",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "shikiCodeblocks",
+      "status": "🔜 Planned",
+      "note": "Syntax highlighting in code blocks."
+    },
+    {
+      "name": "showAllMessageButtons",
+      "status": "✅ Ported",
+      "note": "Always-visible message actions."
+    },
+    {
+      "name": "showBadgesInChat",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "showConnections",
+      "status": "⛔ N/A",
+      "note": "Discord connections."
+    },
+    {
+      "name": "showHiddenChannels",
+      "status": "⛔ N/A",
+      "note": "Discord permission-hidden channels."
+    },
+    {
+      "name": "showHiddenThings",
+      "status": "🔜 Planned",
+      "note": "Reveal Yapper's hidden UI bits where applicable."
+    },
+    {
+      "name": "showMeYourName",
+      "status": "✅ Ported",
+      "note": "Handle next to display name."
+    },
+    {
+      "name": "showMessageEmbeds",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "showResourceChannels",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "showRolesInChat",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "showSongName",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "showTimeoutDuration",
+      "status": "🔜 Planned",
+      "note": "If Yapper exposes timeouts."
+    },
+    {
+      "name": "sidebarChat",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "signature",
+      "status": "🔜 Planned",
+      "note": "Needs a per-user signature store."
+    },
+    {
+      "name": "silenceUsers",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "silentMessageToggle",
+      "status": "🧱 Blocked",
+      "note": "No silent-message flag was observed in Yapper's send path."
+    },
+    {
+      "name": "silentTyping",
+      "status": "✅ Ported",
+      "note": "Drops outgoing typing frames on the socket."
+    },
+    {
+      "name": "snowfall",
+      "status": "🔜 Planned",
+      "note": "Cosmetic overlay; not implemented yet."
+    },
+    {
+      "name": "songLink",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "songSpotlight",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "sortFriendRequests",
+      "status": "🔜 Planned",
+      "note": "Yapper friends have `pending`/`accepted` states."
+    },
+    {
+      "name": "splitLargeMessages",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "spotifyCrack",
+      "status": "⛔ N/A",
+      "note": "Discord Spotify integration."
+    },
+    {
+      "name": "spotifyShareCommands",
+      "status": "⛔ N/A",
+      "note": "Discord Spotify integration."
+    },
+    {
+      "name": "startupTimings",
+      "status": "✅ Ported",
+      "note": "Boot stage timings."
+    },
+    {
+      "name": "statusPresets",
+      "status": "🔜 Planned",
+      "note": "Status presets need Yapper's presence API."
+    },
+    {
+      "name": "statusWhileActive",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "steamStatusSync",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "stickerBlocker",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "stickerPaste",
+      "status": "🟡 Native",
+      "note": "No stickers."
+    },
+    {
+      "name": "stopAutoUnread",
+      "status": "🟡 Native",
+      "note": "Yapper only marks a channel read when you open it."
+    },
+    {
+      "name": "streaks",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "streamerModeOnStream",
+      "status": "⛔ N/A",
+      "note": "Discord streaming detection."
+    },
+    {
+      "name": "streamingCodecDisabler",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "superReactionTweaks",
+      "status": "⛔ N/A",
+      "note": "Yapper has no super reactions."
+    },
+    {
+      "name": "talkInReverse",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "textReplace",
+      "status": "✅ Ported",
+      "note": "Per-user find/replace rules."
+    },
+    {
+      "name": "themeAttributes",
+      "status": "✅ Ported",
+      "note": "Implemented as a native OmniYap plugin."
+    },
+    {
+      "name": "themeLibrary",
+      "status": "🟡 Native",
+      "note": "OmniYap has Themes and Quick CSS built in."
+    },
+    {
+      "name": "tidalEmbeds",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "timezones",
+      "status": "🔜 Planned",
+      "note": "Needs a per-user timezone store."
+    },
+    {
+      "name": "title",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "toastNotifications",
+      "status": "🟡 Native",
+      "note": "The desktop app already uses native notifications."
+    },
+    {
+      "name": "toggleVideoBind",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "toneIndicators",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "translate",
+      "status": "🧱 Blocked",
+      "note": "Needs a translation API/key; no Yapper endpoint."
+    },
+    {
+      "name": "translatePlus",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "triviaAI",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "typingIndicator",
+      "status": "🟡 Native",
+      "note": "Yapper has a typing line."
+    },
+    {
+      "name": "typingTweaks",
+      "status": "✅ Ported",
+      "note": "Avatars, colour and name count."
+    },
+    {
+      "name": "unindent",
+      "status": "✅ Ported",
+      "note": "Trims leading indentation before send."
+    },
+    {
+      "name": "unitConverter",
+      "status": "🔜 Planned",
+      "note": "Composer hook is straightforward, not implemented yet."
+    },
+    {
+      "name": "universalMention",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "unlimitedAccounts",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "unlockedAvatarZoom",
+      "status": "🟡 Native",
+      "note": "OmniYap's ViewIcons viewer covers it."
+    },
+    {
+      "name": "unreadBadgeCount",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "unsuppressEmbeds",
+      "status": "🔜 Planned",
+      "note": "Messages carry `suppress_embeds`."
+    },
+    {
+      "name": "urlHighlighter",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "userMessagesPronouns",
+      "status": "✅ Ported",
+      "note": "Uses Yapper profile `pronouns`."
+    },
+    {
+      "name": "userVoiceShow",
+      "status": "🔜 Planned",
+      "note": "Show the voice channel in a profile."
+    },
+    {
+      "name": "userpfp",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "userpluginInstaller",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "usrbg",
+      "status": "⛔ N/A",
+      "note": "Discord profile backgrounds; Yapper has banners."
+    },
+    {
+      "name": "validReply",
+      "status": "⛔ N/A",
+      "note": "Discord reply validation."
+    },
+    {
+      "name": "validUser",
+      "status": "⛔ N/A",
+      "note": "Discord user validation."
+    },
+    {
+      "name": "vcDoubleClick",
+      "status": "🔜 Planned",
+      "note": "Double-click a voice channel to join."
+    },
+    {
+      "name": "vcNarrator",
+      "status": "🔜 Planned",
+      "note": "TTS on join/leave (Yapper has `voiceMembers`)."
+    },
+    {
+      "name": "vcPanelSettings",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "viewIcons",
+      "status": "✅ Ported",
+      "note": "Full-size avatar viewer."
+    },
+    {
+      "name": "viewRaw",
+      "status": "✅ Ported",
+      "note": "Inspect a message's raw JSON."
+    },
+    {
+      "name": "voiceButtons",
+      "status": "🔜 Planned",
+      "note": "Voice panel buttons; not implemented yet."
+    },
+    {
+      "name": "voiceChannelLog",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "voiceChatUtils",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "voiceDownload",
+      "status": "🔜 Planned",
+      "note": "Voice messages carry `attachment_path`."
+    },
+    {
+      "name": "voiceJoinMessages",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "voiceMessageTranscriber",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "voiceMessages",
+      "status": "🔜 Planned",
+      "note": "Recording requires Yapper's upload flow."
+    },
+    {
+      "name": "voiceMessagesInBackground",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "voiceRejoin",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "voiceStats",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "volumeBooster",
+      "status": "✅ Ported",
+      "note": "WebAudio gain up to 500%."
+    },
+    {
+      "name": "waitForSlot",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "webContextMenus",
+      "status": "✅ Ported",
+      "note": "Native menus for messages/links/images/text."
+    },
+    {
+      "name": "webKeybinds",
+      "status": "✅ Ported",
+      "note": "Channel navigation, mute/deafen."
+    },
+    {
+      "name": "webPWA",
+      "status": "⛔ N/A",
+      "note": "Browser-only."
+    },
+    {
+      "name": "webScreenShare",
+      "status": "🟡 Native",
+      "note": "The desktop app has a full screen-sharing picker."
+    },
+    {
+      "name": "webScreenShareFixes",
+      "status": "⛔ N/A",
+      "note": "Browser-only."
+    },
+    {
+      "name": "webpackTarball",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "whitelistedEmojis",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "whoReacted",
+      "status": "🔜 Planned",
+      "note": "`reactions` entries include `user_id`."
+    },
+    {
+      "name": "whosWatching",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "wigglyText",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    },
+    {
+      "name": "writeUpperCase",
+      "status": "🔜 Planned",
+      "note": "Composer transform; not implemented yet."
+    },
+    {
+      "name": "xsOverlay",
+      "status": "⛔ N/A",
+      "note": "VR overlay."
+    },
+    {
+      "name": "youtubeAdblock",
+      "status": "✅ Ported",
+      "note": "App setting **Block YouTube ads** (session webRequest)."
+    },
+    {
+      "name": "zipPreview",
+      "status": "🧱 Blocked",
+      "note": "Depends on Discord client internals (webpack modules / Flux stores); Yapper exposes no equivalent."
+    }
+  ]
+}

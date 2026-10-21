@@ -1,0 +1,782 @@
+[
+  {
+    "name": "AccentColor",
+    "description": "Choose the accent colour OmniYap uses for buttons, switches, focus rings and highlights.",
+    "tags": [
+      "appearance",
+      "customisation"
+    ]
+  },
+  {
+    "name": "AlwaysAnimate",
+    "description": "Never freeze animated avatars, emoji or decorations.",
+    "tags": [
+      "appearance"
+    ]
+  },
+  {
+    "name": "AnonymiseFileNames",
+    "description": "Renames files before upload so original names are not shared.",
+    "tags": [
+      "privacy",
+      "media"
+    ]
+  },
+  {
+    "name": "AutoCorrect",
+    "description": "Fixes common typos and capitalisation when you send a message.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "BetterGifAltText",
+    "description": "Gives GIF attachments useful alt text and titles for screen readers and hover.",
+    "tags": [
+      "accessibility",
+      "media"
+    ]
+  },
+  {
+    "name": "BetterGifPicker",
+    "description": "A larger GIF picker with more columns and an auto-focused search box.",
+    "tags": [
+      "media",
+      "appearance"
+    ]
+  },
+  {
+    "name": "BiggerStreamPreview",
+    "description": "Makes stream previews in chat considerably larger.",
+    "tags": [
+      "voice",
+      "media"
+    ]
+  },
+  {
+    "name": "CallTimer",
+    "description": "Shows how long you have been in a voice call.",
+    "tags": [
+      "voice",
+      "utility"
+    ]
+  },
+  {
+    "name": "CharacterCounter",
+    "description": "Shows how many characters you have typed, with a warning near the limit.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "ClearURLs",
+    "description": "Removes utm_*, fbclid and other tracking parameters from links.",
+    "tags": [
+      "privacy",
+      "utility"
+    ]
+  },
+  {
+    "name": "CompactLayout",
+    "description": "Fits more messages on screen with tighter spacing.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "ConsoleShortcuts",
+    "description": "Exposes window.omniyap in DevTools: inspect and toggle plugins, read settings and Yapper's store, and copy diagnostics.",
+    "tags": [
+      "developer",
+      "utility"
+    ]
+  },
+  {
+    "name": "CopyEmojiMarkdown",
+    "description": "Right-click any emoji to copy its :shortcode: or image URL.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "CopyFileContents",
+    "description": "Adds a copy button to code blocks in messages.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "CustomCommands",
+    "description": "Expand /shortcuts into saved text before a message is sent.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "CustomFont",
+    "description": "Changes Yapper's font and text size: presets, an installed family, or a font imported with CustomFontFiles.",
+    "tags": [
+      "appearance",
+      "accessibility"
+    ]
+  },
+  {
+    "name": "CustomFontFiles",
+    "description": "Imports a font file (.woff2/.woff/.ttf/.otf) from your computer and uses it in Yapper. Files stay on this device.",
+    "tags": [
+      "appearance",
+      "customisation"
+    ]
+  },
+  {
+    "name": "CustomIcons",
+    "description": "Replaces the Home button picture at the top of the server list with your own image. Stored locally.",
+    "tags": [
+      "appearance",
+      "customisation"
+    ]
+  },
+  {
+    "name": "FixImagesQuality",
+    "description": "Loads images at their original quality instead of a resized thumbnail.",
+    "tags": [
+      "media",
+      "utility"
+    ]
+  },
+  {
+    "name": "FixYoutubeEmbeds",
+    "description": "Repairs YouTube embeds: privacy-friendly host, no related videos, fullscreen allowed.",
+    "tags": [
+      "media",
+      "utility"
+    ]
+  },
+  {
+    "name": "FocusMode",
+    "description": "Hides the server list, sidebar and member panel. Ctrl+Shift+F toggles it.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "ForceOwnerCrown",
+    "description": "Shows a crown next to your own name everywhere. Purely visual: it grants nothing and nobody else sees it.",
+    "tags": [
+      "appearance",
+      "fun"
+    ]
+  },
+  {
+    "name": "GifPaste",
+    "description": "Pasting a direct GIF or video URL sends it as a message.",
+    "tags": [
+      "media",
+      "chat"
+    ]
+  },
+  {
+    "name": "HideAttachments",
+    "description": "Hide media in a channel with one click (per channel, remembered).",
+    "tags": [
+      "media",
+      "utility"
+    ]
+  },
+  {
+    "name": "HideBadges",
+    "description": "Removes the badge clutter beside names in chat and tidies up the badges on profile cards.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "HideClutter",
+    "description": "Hides the parts of Yapper's interface you never use: upsells, gift buttons, boost bars, the typing line or the member list.",
+    "tags": [
+      "appearance",
+      "utility"
+    ]
+  },
+  {
+    "name": "HideMedia",
+    "description": "Hides images, videos and link previews across chat with one toggle, for a calmer, text-only view.",
+    "tags": [
+      "media",
+      "appearance",
+      "utility"
+    ]
+  },
+  {
+    "name": "ImageFilename",
+    "description": "Shows the original filename under images and attachments.",
+    "tags": [
+      "media",
+      "utility"
+    ]
+  },
+  {
+    "name": "ImageZoom",
+    "description": "Click an image to open a full-screen viewer you can zoom and pan.",
+    "tags": [
+      "media",
+      "utility"
+    ]
+  },
+  {
+    "name": "IrcColors",
+    "description": "Gives every author a stable colour derived from their username, IRC style.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "JumpToLatest",
+    "description": "Shows a floating button to jump back to the newest message.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "KeepCurrentChannel",
+    "description": "Reopens the channel you were last reading after a reload.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "MediaActions",
+    "description": "Hover an image, video or audio attachment to open, download or copy its link.",
+    "tags": [
+      "media",
+      "utility"
+    ]
+  },
+  {
+    "name": "MemberCount",
+    "description": "Shows the number of members in the open server.",
+    "tags": [
+      "servers",
+      "utility"
+    ]
+  },
+  {
+    "name": "MentionAvatars",
+    "description": "Shows a small avatar inside @mentions.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "MentionHighlight",
+    "description": "Tints messages that mention you so they stand out while scrolling.",
+    "tags": [
+      "chat",
+      "appearance"
+    ]
+  },
+  {
+    "name": "MessageBookmarks",
+    "description": "Bookmark messages and jump back to them later.",
+    "tags": [
+      "chat",
+      "productivity"
+    ]
+  },
+  {
+    "name": "MessageClickActions",
+    "description": "Middle-click to quote, Shift-click to copy a message.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "MessageLogger",
+    "description": "Keeps a local log of edited and deleted messages, so nothing disappears silently.",
+    "tags": [
+      "chat",
+      "privacy",
+      "utility"
+    ]
+  },
+  {
+    "name": "MessageStyle",
+    "description": "Fine-tunes message text: size, line height, spacing, width, bubbles and separators.",
+    "tags": [
+      "appearance",
+      "chat",
+      "customisation"
+    ]
+  },
+  {
+    "name": "MoreQuickReactions",
+    "description": "Adds a row of one-click reactions to every message.",
+    "tags": [
+      "chat",
+      "reactions"
+    ]
+  },
+  {
+    "name": "NameEffects",
+    "description": "Adds an animated effect to your name (rainbow, aurora, neon or pulse). Client-side only.",
+    "tags": [
+      "appearance",
+      "fun",
+      "customisation"
+    ]
+  },
+  {
+    "name": "NameStyle",
+    "description": "Styles the names in chat and member lists: weight, size, spacing, capitals and a soft glow.",
+    "tags": [
+      "appearance",
+      "chat",
+      "customisation"
+    ]
+  },
+  {
+    "name": "NoBlockedMessages",
+    "description": "Hides messages from people you blocked, without leaving gaps in the chat.",
+    "tags": [
+      "chat",
+      "privacy"
+    ]
+  },
+  {
+    "name": "NoF1",
+    "description": "F1 no longer opens the browser's help page.",
+    "tags": [
+      "utility"
+    ]
+  },
+  {
+    "name": "NoMaskedUrlPaste",
+    "description": "Pasting a link over selected text inserts the raw URL instead of masking it.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "NoMiddleClickPaste",
+    "description": "Middle-clicking the composer no longer pastes the X11 clipboard.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "NoMosaic",
+    "description": "Shows multiple image attachments one under another instead of a mosaic.",
+    "tags": [
+      "appearance",
+      "media"
+    ]
+  },
+  {
+    "name": "NoOnboardingDelay",
+    "description": "Skips Yapper's onboarding intro so you land straight in chat.",
+    "tags": [
+      "utility"
+    ]
+  },
+  {
+    "name": "NoPendingCount",
+    "description": "Hides the little pending/failed counters on channels and messages.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "NoReplyMention",
+    "description": "Replies no longer ping the author again.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "NoServerEmojis",
+    "description": "Hides the server emoji section from the emoji picker.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "NoSystemBadge",
+    "description": "Hides the SYSTEM tag that Yapper shows next to official accounts.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "NotificationRules",
+    "description": "Filter desktop notifications by keyword or channel.",
+    "tags": [
+      "notifications",
+      "utility"
+    ]
+  },
+  {
+    "name": "NoTrack",
+    "description": "Blocks analytics beacons and third-party tracking requests.",
+    "tags": [
+      "privacy"
+    ]
+  },
+  {
+    "name": "NoTypingAnimation",
+    "description": "Stop the bouncing typing dots; the indicator stays but holds still.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "oneko",
+    "description": "A small cat follows your mouse pointer around Yapper. It sits when it reaches you and sleeps when you stop moving.",
+    "tags": [
+      "fun",
+      "appearance"
+    ]
+  },
+  {
+    "name": "PetPet",
+    "description": "Pet someone's avatar and watch it wiggle.",
+    "tags": [
+      "fun",
+      "media"
+    ]
+  },
+  {
+    "name": "PictureInPicture",
+    "description": "Pop any video in chat out into a floating picture-in-picture window.",
+    "tags": [
+      "media",
+      "utility"
+    ]
+  },
+  {
+    "name": "PluginProfiles",
+    "description": "Save, export and restore whole plugin configurations.",
+    "tags": [
+      "utility",
+      "productivity"
+    ]
+  },
+  {
+    "name": "PreviewMessage",
+    "description": "Previews how your message will look (bold, quotes, code, links, lists) before you send it. Ctrl+Shift+P also works.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "QuickDelete",
+    "description": "Adds a one-click delete button to messages you are allowed to delete, without Yapper's confirmation window.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "QuickMention",
+    "description": "Adds an @ button that mentions the message author in the composer.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "QuickReply",
+    "description": "Reply without reaching for the hover menu: double-click, or press R.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "QuickSwitcher",
+    "description": "Press Ctrl+K to jump to any channel with fuzzy search.",
+    "tags": [
+      "navigation",
+      "utility"
+    ]
+  },
+  {
+    "name": "Quoter",
+    "description": "Quote a message into the composer as a > block.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "ReadAllNotificationsButton",
+    "description": "Adds a button that marks every unread channel as read.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "ReadAloud",
+    "description": "Reads a message aloud, or every incoming message if you want.",
+    "tags": [
+      "accessibility",
+      "chat"
+    ]
+  },
+  {
+    "name": "ReplyPingDot",
+    "description": "Shows a dot (amber for replies, red for mentions and DMs) on the chat when someone needs you. It clears when you open that chat.",
+    "tags": [
+      "notifications",
+      "chat",
+      "servers"
+    ]
+  },
+  {
+    "name": "ReplyTimestamp",
+    "description": "Shows when the message being replied to was originally sent.",
+    "tags": [
+      "chat",
+      "appearance"
+    ]
+  },
+  {
+    "name": "RevealAllSpoilers",
+    "description": "Reveal blurred spoilers in chat, without clicking each one.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "RoundedCorners",
+    "description": "Rounds the rail, sidebar, chat, cards and media.",
+    "tags": [
+      "appearance"
+    ]
+  },
+  {
+    "name": "ScheduleMessages",
+    "description": "Write a message now and have OmniYap send it later.",
+    "tags": [
+      "chat",
+      "productivity"
+    ]
+  },
+  {
+    "name": "ServerAccent",
+    "description": "Gives each server its own accent colour. Buttons, highlights and unread dots change when you open that server. Only you see it.",
+    "tags": [
+      "servers",
+      "appearance",
+      "customisation"
+    ]
+  },
+  {
+    "name": "ServerInfo",
+    "description": "Adds a server info button to the server header: owner, creation date, members, channels, roles and emojis.",
+    "tags": [
+      "servers",
+      "utility"
+    ]
+  },
+  {
+    "name": "ServerListIndicators",
+    "description": "Shows how many friends are online and how many servers you are in, right under the logo in the server list.",
+    "tags": [
+      "servers",
+      "appearance"
+    ]
+  },
+  {
+    "name": "ShowAllMessageButtons",
+    "description": "Always show a message's action buttons instead of only on hover.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "ShowMeYourName",
+    "description": "Shows the account handle next to a display name, so nicknames are never confusing.",
+    "tags": [
+      "chat",
+      "appearance"
+    ]
+  },
+  {
+    "name": "SilentTyping",
+    "description": "Stop sending typing indicators to other people.",
+    "tags": [
+      "privacy",
+      "chat"
+    ]
+  },
+  {
+    "name": "SmoothTransitions",
+    "description": "Adds soft transitions to channel changes, hover states and the message list.",
+    "tags": [
+      "appearance"
+    ]
+  },
+  {
+    "name": "SplitLargeMessages",
+    "description": "Long messages are sent in several parts instead of being cut off at 2000 characters.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "StartupTimings",
+    "description": "Measures how long Yapper, the mod loader and the store take to become ready.",
+    "tags": [
+      "developer",
+      "utility"
+    ]
+  },
+  {
+    "name": "TextReplace",
+    "description": "Find-and-replace rules for incoming messages (and optionally what you send).",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "ThemeAttributes",
+    "description": "Adds stable data attributes to messages and the page so themes and Quick CSS can target authors, your own messages and the current channel.",
+    "tags": [
+      "developer",
+      "appearance",
+      "themes"
+    ]
+  },
+  {
+    "name": "TypingTweaks",
+    "description": "Control the typing indicator's avatars, colour and number of names.",
+    "tags": [
+      "appearance",
+      "chat"
+    ]
+  },
+  {
+    "name": "Unindent",
+    "description": "Removes accidental leading indentation from messages before they are sent.",
+    "tags": [
+      "chat",
+      "utility"
+    ]
+  },
+  {
+    "name": "UnreadNavigator",
+    "description": "Jump between unread channels with Alt+Shift+↑/↓.",
+    "tags": [
+      "navigation",
+      "chat"
+    ]
+  },
+  {
+    "name": "UserMessagesPronouns",
+    "description": "Shows people's pronouns next to their name in chat.",
+    "tags": [
+      "chat",
+      "appearance"
+    ]
+  },
+  {
+    "name": "UserNotes",
+    "description": "Keep private notes about people, stored locally.",
+    "tags": [
+      "utility",
+      "productivity"
+    ]
+  },
+  {
+    "name": "VcNarrator",
+    "description": "Uses your system voice to announce who joins or leaves the voice channel you are in.",
+    "tags": [
+      "voice",
+      "accessibility"
+    ]
+  },
+  {
+    "name": "ViewIcons",
+    "description": "Click an avatar to view and download it at full size.",
+    "tags": [
+      "media",
+      "utility"
+    ]
+  },
+  {
+    "name": "ViewRaw",
+    "description": "Adds an action to inspect the raw message JSON Yapper has loaded.",
+    "tags": [
+      "developer",
+      "utility"
+    ]
+  },
+  {
+    "name": "VolumeBooster",
+    "description": "Boosts call and media volume above 100% using WebAudio.",
+    "tags": [
+      "voice",
+      "media"
+    ]
+  },
+  {
+    "name": "WebContextMenus",
+    "description": "Native right-click menus for links, images, selected text and messages.",
+    "tags": [
+      "utility",
+      "app"
+    ]
+  },
+  {
+    "name": "WebKeybinds",
+    "description": "Alt+↑/↓ channel navigation and Ctrl+Shift+M/D mute and deafen.",
+    "tags": [
+      "navigation",
+      "voice",
+      "utility"
+    ]
+  },
+  {
+    "name": "WordFilter",
+    "description": "Hides words you never want to see, on your screen only: blurred, covered, or the whole message collapsed. Click a hidden message to reveal it.",
+    "tags": [
+      "chat",
+      "privacy",
+      "utility"
+    ]
+  },
+  {
+    "name": "YoutubeAdblock",
+    "description": "Filters ad requests in embedded YouTube players.",
+    "tags": [
+      "media",
+      "privacy"
+    ]
+  }
+]

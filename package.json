@@ -1,0 +1,32 @@
+{
+  "name": "omniyap",
+  "productName": "OmniYap",
+  "version": "0.1.0",
+  "description": "OmniYap — a client modification and desktop app for Yapper, with Equicord-style plugins",
+  "main": "src/main/index.js",
+  "author": {
+    "name": "OmniYap contributors",
+    "email": "noreply@omniyap.website"
+  },
+  "desktopName": "omniyap.desktop",
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "homepage": "https://github.com/omniyap/omniyap",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && electron .",
+    "start": "npm run build && electron .",
+    "icons": "node scripts/make-icons.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "test": "node --test test/*.test.mjs",
+    "package": "npm run build && electron-builder",
+    "package:linux": "npm run build && electron-builder --linux",
+    "package:win": "npm run build && electron-builder --win",
+    "package:mac": "npm run build && electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0",
+    "esbuild": "^0.25.0"
+  }
+}

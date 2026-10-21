@@ -1,0 +1,20 @@
+node_modules/
+dist/
+release/
+.research/
+*.log
+.DS_Store
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+.android-sdk/
+.gradle-dist/
+
+# Local installers and generated build output
+Yapper-Setup.*
+android/app/src/main/assets/renderer.js
+*.keystore
+*.jks
+.freebuff/
+links.txt

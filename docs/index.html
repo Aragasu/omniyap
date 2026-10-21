@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OmniYap — Yapper, with plugins</title>
+<meta name="description" content="OmniYap is a free, open-source desktop client and plugin platform for Yapper. 97 plugins, themes, accessibility tools and quality-of-life fixes.">
+<meta name="theme-color" content="#8b39fd">
+<link rel="icon" href="./assets/icon.png">
+<link rel="apple-touch-icon" href="./assets/icon.png">
+<meta property="og:title" content="OmniYap — Yapper, with plugins">
+<meta property="og:description" content="A free, open-source desktop client and plugin platform for Yapper. 97 plugins, themes and quality-of-life fixes.">
+<meta property="og:image" content="./assets/icon.png">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="bg-glow" aria-hidden="true"></div>
+<header class="nav">
+  <a class="brand" href="./">
+    <img src="./assets/icon.png" alt="" width="30" height="30">
+    <span>OmniYap</span>
+  </a>
+  <nav class="nav-links" id="nav-links">
+    <a href="#features">Features</a>
+    <a href="#plugins">Plugins</a>
+    <a href="#install">Install</a>
+    <a href="https://github.com/Aragasu/omniyap/blob/main/docs/PLUGIN-MATRIX.md">Plugin matrix</a>
+    <a class="nav-gh" href="https://github.com/Aragasu/omniyap" rel="noopener">
+      <svg viewBox="0 0 16 16" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      GitHub
+    </a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse"></span> Open source · GPL-3.0 · v<span data-version>0.1.0</span></div>
+      <h1>Yapper,<br><span class="grad">without the limits.</span></h1>
+      <p class="lede">
+        OmniYap is a desktop client and plugin platform for Yapper. A quieter chat, better calls,
+        real themes and <strong>97 plugins</strong> that stay out of your way.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="#download" id="hero-download">Download OmniYap</a>
+        <a class="btn btn-ghost btn-lg" href="#plugins">Browse plugins</a>
+      </div>
+      <ul class="hero-points">
+        <li>No account, no telemetry</li>
+        <li>Windows · macOS · Linux</li>
+        <li>Your data stays local</li>
+      </ul>
+    </div>
+    <div class="hero-card" id="download">
+      <div class="window-bar"><i></i><i></i><i></i><span>omniyap — latest release</span></div>
+      <div class="download-body">
+        <div class="download-os">
+          <span class="os-chip" id="os-chip">Detecting your OS…</span>
+          <span class="release-tag" id="release-tag">latest</span>
+        </div>
+        <a class="btn btn-primary download-main" id="download-main" href="https://github.com/Aragasu/omniyap/releases/latest" rel="noopener">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <span id="download-label">Download OmniYap</span>
+        </a>
+        <div class="download-meta" id="download-meta">Finding the right build…</div>
+        <div class="alt-downloads" id="alt-downloads"></div>
+        <div class="download-foot">
+          <a href="https://github.com/Aragasu/omniyap/releases" rel="noopener">All releases</a>
+          <span>·</span>
+          <a href="https://github.com/Aragasu/omniyap" rel="noopener">Source code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Project numbers">
+    <div><b>97</b><span>plugins built in</span></div>
+    <div><b>365</b><span>Equicord plugins audited</span></div>
+    <div><b>0</b><span>telemetry or tracking</span></div>
+    <div><b>GPL</b><span>free and open source</span></div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-head">
+      <span class="kicker">Why OmniYap</span>
+      <h2>Everything Yapper should have shipped.</h2>
+      <p>Small fixes and serious tools, all switchable. Nothing is forced on you, and every feature is local-first.</p>
+    </div>
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">◈</div>
+        <h3>97 plugins</h3>
+        <p>Privacy, chat, media, voice, themes and developer tools. Search, filter and toggle them from one panel.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">◐</div>
+        <h3>Real themes</h3>
+        <p>Import CSS themes, keep a Quick CSS scratchpad, and switch themes without reloading. Accent colour included.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">⌁</div>
+        <h3>Desktop that behaves</h3>
+        <p>Tray, start-minimised, native notifications, badge counts, screen-share picker and global media keys.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">◒</div>
+        <h3>Privacy by default</h3>
+        <p>Silent typing, tracked-link stripping, local message logging and a word filter that only affects your screen.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">◇</div>
+        <h3>Accessibility</h3>
+        <p>Read-aloud, voice-channel narration, font and size controls, reduced motion and high-contrast friendly UI.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">⌘</div>
+        <h3>Hackable</h3>
+        <p>A Vencord-shaped plugin API: settings, message decoration, source patches and a live module finder.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="showcase">
+    <div class="showcase-copy">
+      <span class="kicker">One panel</span>
+      <h2>Your client. Your rules.</h2>
+      <p>
+        OmniYap's settings live in their own overlay, so Yapper's UI never fights with them.
+        Each plugin documents what it changes, and disabling one undoes it immediately — including its CSS,
+        listeners, timers and patches.
+      </p>
+      <ul class="check-list">
+        <li>Per-plugin settings with reset</li>
+        <li>Profile snapshots and import/export</li>
+        <li>Live diagnostics for failed patches</li>
+        <li>Shortcut: <kbd>Ctrl</kbd> + <kbd>,</kbd></li>
+      </ul>
+    </div>
+    <figure class="shot">
+      <img src="./assets/settings.png" alt="OmniYap settings overlay showing the plugin list" loading="lazy">
+      <figcaption>97 plugins, 74 enabled by default.</figcaption>
+    </figure>
+  </section>
+
+  <section id="plugins" class="section plugins-section">
+    <div class="section-head">
+      <span class="kicker">Plugin catalogue</span>
+      <h2>Pick what you need.</h2>
+      <p>Every plugin ships in the app. Filter by category, search by name, and enable it in Settings → Plugins.</p>
+    </div>
+    <div class="plugin-toolbar">
+      <label class="search">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="plugin-search" type="search" placeholder="Search 97 plugins…" autocomplete="off">
+      </label>
+      <div class="chips" id="plugin-tags"></div>
+      <button class="btn btn-ghost" id="plugin-toggle" aria-expanded="false">Show all</button>
+    </div>
+    <div class="plugin-grid" id="plugin-grid"></div>
+    <p class="plugin-empty" id="plugin-empty" hidden>No plugins match that search.</p>
+  </section>
+
+  <section id="install" class="section install">
+    <div class="section-head">
+      <span class="kicker">Install</span>
+      <h2>Running in under a minute.</h2>
+      <p>OmniYap is a standalone app. It does not modify Yapper's servers or your account.</p>
+    </div>
+    <div class="install-grid">
+      <article class="step">
+        <span class="step-num">1</span>
+        <h3>Download your build</h3>
+        <p>Use the button above — it detects your OS from the latest GitHub release.</p>
+        <div class="cmd" data-copy="https://github.com/Aragasu/omniyap/releases/latest">github.com/Aragasu/omniyap/releases</div>
+      </article>
+      <article class="step">
+        <span class="step-num">2</span>
+        <h3>Open it</h3>
+        <p>AppImage: <code>chmod +x</code> then run. Debian/Ubuntu: install the <code>.deb</code>. Windows: run the installer.</p>
+        <div class="cmd" data-copy="chmod +x OmniYap-*.AppImage &amp;&amp; ./OmniYap-*.AppImage">chmod +x OmniYap-*.AppImage &amp;&amp; ./OmniYap-*.AppImage</div>
+      </article>
+      <article class="step">
+        <span class="step-num">3</span>
+        <h3>Sign in to Yapper</h3>
+        <p>Log in as usual. Open <kbd>Ctrl</kbd> + <kbd>,</kbd> to choose plugins, themes and app settings.</p>
+        <div class="cmd" data-copy="Ctrl + ,">Ctrl + ,</div>
+      </article>
+    </div>
+    <div class="build-note">
+      <strong>Building from source?</strong>
+      <code>git clone https://github.com/Aragasu/omniyap.git &amp;&amp; cd omniyap &amp;&amp; npm install &amp;&amp; npm run start</code>
+      <button class="copy-btn" data-copy="git clone https://github.com/Aragasu/omniyap.git &amp;&amp; cd omniyap &amp;&amp; npm install &amp;&amp; npm run start">Copy</button>
+    </div>
+  </section>
+
+  <section class="section faq">
+    <div class="section-head">
+      <span class="kicker">Questions</span>
+      <h2>Good to know.</h2>
+    </div>
+    <details>
+      <summary>Is OmniYap allowed by Yapper?</summary>
+      <p>OmniYap is an unofficial client that loads Yapper's website in a desktop window and adds local features. It does not automate your account or bypass permissions. Check Yapper's terms before using any third-party client.</p>
+    </details>
+    <details>
+      <summary>Does it work on the web version?</summary>
+      <p>The app is the supported target. The plugin runtime can run in a browser during development, but tray, screen sharing, native notifications and file dialogs need the desktop app.</p>
+    </details>
+    <details>
+      <summary>Where are my settings stored?</summary>
+      <p>In OmniYap's own data folder on your computer, never on a server. Themes, plugin options, message logs and notes stay local. You can export diagnostics without including message content.</p>
+    </details>
+    <details>
+      <summary>Why are some Equicord plugins missing?</summary>
+      <p>Equicord's 365 plugins target Discord's internals — webpack modules, Flux stores and a permission model Yapper does not have. The <a href="https://github.com/Aragasu/omniyap/blob/main/docs/PLUGIN-MATRIX.md">plugin matrix</a> lists every one and explains whether it is ported, native, planned or impossible.</p>
+    </details>
+    <details>
+      <summary>How do updates work?</summary>
+      <p>Download the latest release from this page or GitHub. Your settings and plugins live outside the app bundle, so they survive updates.</p>
+    </details>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">
+    <img src="./assets/icon.png" alt="" width="26" height="26">
+    <b>OmniYap</b>
+    <span>Not affiliated with Yapper.</span>
+  </div>
+  <nav>
+    <a href="https://github.com/Aragasu/omniyap" rel="noopener">GitHub</a>
+    <a href="https://github.com/Aragasu/omniyap/releases" rel="noopener">Releases</a>
+    <a href="https://github.com/Aragasu/omniyap/blob/main/docs/PLUGIN-MATRIX.md">Plugin matrix</a>
+    <a href="https://github.com/Aragasu/omniyap/blob/main/LICENSE" rel="noopener">GPL-3.0</a>
+  </nav>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="./app.js" defer></script>
+</body>
+</html>

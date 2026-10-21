@@ -1,0 +1,56 @@
+appId: website.omniyap.desktop
+productName: OmniYap
+copyright: Copyright © 2026 OmniYap contributors
+artifactName: OmniYap-${version}-${os}-${arch}.${ext}
+
+directories:
+  output: release
+  buildResources: assets
+
+files:
+  - dist/**/*
+  - src/main/**/*
+  - src/preload/**/*
+  - package.json
+  - "!**/*.map"
+
+asar: true
+compression: maximum
+
+protocols:
+  - name: OmniYap
+    schemes: [omniyap]
+
+linux:
+  target:
+    - AppImage
+    - deb
+    - tar.gz
+  category: Network;InstantMessaging
+  icon: assets/icon.png
+  synopsis: Yapper with plugins
+  syncDesktopName: true
+  maintainer: OmniYap contributors <noreply@omniyap.website>
+
+win:
+  target:
+    - nsis
+    - portable
+  icon: assets/icon.png
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  perMachine: false
+  createDesktopShortcut: always
+
+mac:
+  target:
+    - dmg
+    - zip
+  category: public.app-category.social-networking
+  icon: assets/icon.png
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: assets/entitlements.mac.plist
+  entitlementsInherit: assets/entitlements.mac.plist
