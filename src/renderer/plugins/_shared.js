@@ -94,6 +94,36 @@ export function messageAuthorId(message) {
     return message.author_id || message.user_id || message.authorId || message.userId || message.sender_id || null;
 }
 
+/** A message's creation date, whichever field Yapper used. */
+export function messageDate(message) {
+    const raw = message?.created_at ?? message?.timestamp ?? message?.createdAt ?? message?.at ?? message?.time;
+    const date = raw ? new Date(raw) : null;
+    return date && !Number.isNaN(date.getTime()) ? date : null;
+}
+
+/**
+ * Open a message's "More" menu and click its Edit item. Resolves true when the editor opened.
+ * Used by QuickEdit and DoubleClickEdit; both go through Yapper's own UI instead of guessing its API.
+ */
+export async function editMessage(row) {
+    if (!row) return false;
+    const more = row.querySelector('.msg-actions button[aria-label="More"], .msg-actions button[title="More"]');
+    if (!(more instanceof HTMLElement)) return false;
+    more.click();
+    await new Promise((resolve) => setTimeout(resolve, 90));
+    const candidates = [...document.querySelectorAll('button, [role="menuitem"], [role="button"], .menu-item, .ctx-item')];
+    const edit = candidates.find((el) => {
+        const text = el.textContent?.trim().toLowerCase();
+        return text === "edit" || text === "edit message" || text === "edit message…";
+    });
+    if (edit instanceof HTMLElement) {
+        edit.click();
+        return true;
+    }
+    document.body.click();
+    return false;
+}
+
 export function attachmentUrls(row) {
     const urls = [];
     row?.querySelectorAll(".msg-image img, .msg-body img, .msg-body video, .msg-body audio, .msg-body a[href]").forEach((el) => {
@@ -181,6 +211,146 @@ export const profileUrl = (userId) => `${location.origin}/?user=${encodeURICompo
 
 /** Default quick reactions, matching Yapper's common emoji set. */
 export const QUICK_REACTIONS = ["😂", "🔥", "❤️", "👍", "👀", "🎉", "😭", "💀"];
+
+/** Split a comma/newline separated setting into trimmed, non-empty values. */
+export function parseList(value, limit = 200) {
+    return String(value || "")
+        .split(/[\n,;]+/)
+        .map((part) => part.trim())
+        .filter(Boolean)
+        .slice(0, limit);
+}
+
+/** A stable hue (0-359) for a user id or name. */
+export function stableHue(text) {
+    let value = 0;
+    const source = String(text || "");
+    for (let i = 0; i < source.length; i++) value = (value * 31 + source.charCodeAt(i)) >>> 0;
+    return value % 360;
+}
+
+/** Add a button to the chat header, once. Returns the button or null. */
+export function headerButton({ className, title, text, onClick, prepend = false }) {
+    const head = document.querySelector("header.main-head, .chat .main-head");
+    if (!head) return null;
+    const existing = head.querySelector(`.${className}`);
+    if (existing) return existing;
+    const button = h("button", {
+        class: `icon-btn ${className}`,
+        title,
+        "aria-label": title,
+        onclick: onClick,
+    }, text);
+    if (prepend) head.prepend(button);
+    else head.appendChild(button);
+    return button;
+}
+
+/** Download a text blob without leaving the app. */
+export function downloadText(filename, text, mime = "text/plain") {
+    const url = URL.createObjectURL(new Blob([text], { type: mime }));
+    downloadUrl(url, filename);
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+
+let sharedAudio = null;
+
+/** A shared AudioContext; created lazily and resumed on the next user gesture. */
+export function audioContext() {
+    const Ctor = window.AudioContext || window.webkitAudioContext;
+    if (!Ctor) return null;
+    if (!sharedAudio) sharedAudio = new Ctor();
+    if (sharedAudio.state === "suspended") sharedAudio.resume().catch(() => undefined);
+    return sharedAudio;
+}
+
+/** Play a short synthesised tone (no audio files, no network). */
+export function playTone(frequency = 660, duration = 0.12, { volume = 0.12, type = "sine", delay = 0 } = {}) {
+    const ac = audioContext();
+    if (!ac) return false;
+    try {
+        const at = ac.currentTime + Math.max(0, delay);
+        const oscillator = ac.createOscillator();
+        const gain = ac.createGain();
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, at);
+        gain.gain.setValueAtTime(0.0001, at);
+        gain.gain.exponentialRampToValueAtTime(Math.max(0.0002, volume), at + 0.012);
+        gain.gain.exponentialRampToValueAtTime(0.0001, at + duration);
+        oscillator.connect(gain).connect(ac.destination);
+        oscillator.start(at);
+        oscillator.stop(at + duration + 0.02);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+/** Play a sequence of [frequency, startOffset] notes. */
+export function playMelody(notes, { volume = 0.1, type = "sine", duration = 0.16 } = {}) {
+    return notes.every(([frequency, delay]) => playTone(frequency, duration, { volume, type, delay }));
+}
+
+/** The most recent message in a channel, if Yapper has loaded it. */
+export function lastMessage(channelId) {
+    const list = store.messages(channelId);
+    return list.length ? list[list.length - 1] : null;
+}
+
+/**
+ * Run transform(text) right before a message is sent (Enter or the send button). The transform can
+ * return the same text to leave the send alone. Returns a cleanup function.
+ */
+export function interceptSend(transform) {
+    let busy = false;
+
+    const rewrite = () => {
+        if (busy) return false;
+        const composer = getComposer();
+        if (!composer || !composer.value.trim()) return false;
+        let next;
+        try {
+            next = transform(composer.value, composer);
+        } catch (err) {
+            OmniYap.log.warn("send transform failed", err);
+            return false;
+        }
+        if (typeof next !== "string" || next === composer.value) return false;
+        busy = true;
+        setNativeValue(composer, next);
+        composer.focus();
+        setTimeout(() => {
+            const send = document.querySelector(".composer .send-btn, .composer-box .send-btn");
+            if (send instanceof HTMLElement) send.click();
+            else composer.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", code: "Enter", bubbles: true }));
+            setTimeout(() => { busy = false; }, 60);
+        }, 30);
+        return true;
+    };
+
+    const onKeyDown = (event) => {
+        if (event.key !== "Enter" || event.shiftKey || event.isComposing) return;
+        if (event.target !== getComposer()) return;
+        if (!rewrite()) return;
+        event.preventDefault();
+        event.stopPropagation();
+    };
+
+    const onClick = (event) => {
+        if (busy || !(event.target instanceof Element)) return;
+        if (!event.target.closest(".send-btn, button[type='submit'], [aria-label='Send']")) return;
+        if (!rewrite()) return;
+        event.preventDefault();
+        event.stopPropagation();
+    };
+
+    document.addEventListener("keydown", onKeyDown, true);
+    document.addEventListener("click", onClick, true);
+    return () => {
+        document.removeEventListener("keydown", onKeyDown, true);
+        document.removeEventListener("click", onClick, true);
+    };
+}
 
 /** Copy an image to the clipboard as a PNG (used by copyEmojiMarkdown/petpet exports). */
 export async function copyImage(url) {

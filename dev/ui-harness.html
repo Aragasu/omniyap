@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OmniYap UI harness</title>
+<style>
+    /* A stand-in for Yapper's shell. The real panel is judged over plausible content rather than a
+       blank page: fixed overlays, the launcher and modals all need something underneath them. */
+    * { box-sizing: border-box }
+    html, body { height: 100%; margin: 0; overflow: hidden }
+    body { background: #131319; color: #dcdde4; font: 14px/1.45 Inter, system-ui, sans-serif; display: grid; grid-template-columns: 232px 1fr }
+    .rail { background: #16161f; border-right: 1px solid rgba(255,255,255,.06); padding: 16px 12px; overflow: hidden }
+    .rail .server { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 8px; background: #1e1e2a }
+    .rail .dot { width: 28px; height: 28px; border-radius: 8px; background: #8b39fd; flex: none }
+    .rail h1 { font-size: 13px; margin: 0; font-weight: 650 }
+    .rail .chan { padding: 6px 8px; border-radius: 6px; color: #9b9daa; font-size: 13px }
+    .rail .chan.active { background: #242432; color: #ececf1 }
+    .main { display: flex; flex-direction: column; min-width: 0 }
+    .head { height: 48px; display: flex; align-items: center; gap: 10px; padding: 0 18px; border-bottom: 1px solid rgba(255,255,255,.06); font-weight: 600 }
+    .body { flex: 1; padding: 18px; overflow: hidden; display: flex; flex-direction: column; gap: 14px }
+    .msg { display: flex; gap: 10px }
+    .avatar { width: 34px; height: 34px; border-radius: 50%; background: #2f2f40; flex: none }
+    .msg .who { font-weight: 600; font-size: 13px; color: #e7e8ee }
+    .msg .when { color: #71737e; font-size: 11px; margin-left: 6px }
+    .msg p { margin: 3px 0 0; color: #c3c5cf; max-width: 70ch }
+    /* Yapper's user bar, so injectLauncher() has a home. */
+    .user-bar { position: fixed; left: 10px; bottom: 10px; display: flex; align-items: center; gap: 6px; padding: 5px; background: #1e1e2a; border-radius: 10px }
+    .user-bar .me { width: 26px; height: 26px; border-radius: 50%; background: #3a3a4a }
+</style>
+</head>
+<body>
+<div class="rail">
+    <div class="server"><div class="dot"></div><h1>Yapper</h1></div>
+    <div style="margin-top:14px">
+        <div class="chan active"># general</div>
+        <div class="chan"># random</div>
+        <div class="chan"># design</div>
+    </div>
+</div>
+<div class="main">
+    <div class="head">#general</div>
+    <div class="body">
+        <div class="msg"><div class="avatar"></div><div><div class="who">aragasu<span class="when">today at 12:04</span></div><p>Background content so the settings overlay, launcher and modals are judged against a real shell instead of a blank page.</p></div></div>
+        <div class="msg"><div class="avatar"></div><div><div class="who">buffy<span class="when">today at 12:05</span></div><p>This harness loads the built renderer bundle and opens the real settings panel.</p></div></div>
+        <div class="msg"><div class="avatar"></div><div><div class="who">aragasu<span class="when">today at 12:06</span></div><p>Add <code>?tab=tools</code> (or themes, app, diagnostics) to open a specific page.</p></div></div>
+    </div>
+</div>
+<div class="user-bar"><div class="me"></div></div>
+<script src="../dist/renderer.js"></script>
+<script>
+    addEventListener("load", () => {
+        try {
+            window.omniyap?.ui.injectLauncher();
+            const tab = new URLSearchParams(location.search).get("tab");
+            window.omniyap?.ui.open(tab || undefined);
+        } catch (err) {
+            console.error("[harness]", err);
+        }
+    });
+</script>
+</body>
+</html>

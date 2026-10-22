@@ -1,98 +1,203 @@
+// A port of oneko.js by adryd325 (https://github.com/adryd325/oneko.js), itself a port of the
+// original X11 oneko by Tatsuya Kato. The sprite sheet is the real oneko.gif (8×4 frames of 32 px),
+// vendored from that project, so the cat looks and animates exactly like the classic one.
 import { definePlugin, definePluginSettings, OptionType } from "../core/api.js";
+import { localJson } from "./_shared.js";
+import spriteSheet from "../../../assets/oneko.gif";
 
-const BODY = "#c9ccd6";
-const SHADE = "#8f93a3";
-const svg = (inner) =>
-    "data:image/svg+xml;utf8," +
-    encodeURIComponent(
-        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">${inner}</svg>`,
-    );
+const FRAME = 32;
+const SPEED = 10;
 
-const HEAD = `<path d="M18 9 20 4l3 4 3-4 2 5v5a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5V9z" fill="${BODY}"/><circle cx="21" cy="12.5" r="1" fill="#222"/><circle cx="26" cy="12.5" r="1" fill="#222"/><path d="M22.5 15h2l-1 1.2z" fill="#e07a8c"/>`;
-
-const FRAMES = {
-    sit: svg(`<path d="M6 28c-3 0-4-6 0-8 0 3 3 3 4 2l2 6z" fill="${SHADE}"/><ellipse cx="14" cy="23" rx="8" ry="6" fill="${BODY}"/>${HEAD}<rect x="19" y="25" width="3" height="5" rx="1.5" fill="${BODY}"/><rect x="9" y="26" width="3" height="4" rx="1.5" fill="${BODY}"/>`),
-    run1: svg(`<path d="M3 17c-1-4 3-6 5-4l1 4z" fill="${SHADE}"/><ellipse cx="14" cy="19" rx="10" ry="5" fill="${BODY}"/>${HEAD}<rect x="20" y="22" width="3" height="8" rx="1.5" fill="${BODY}" transform="rotate(-18 21 22)"/><rect x="7" y="22" width="3" height="8" rx="1.5" fill="${BODY}" transform="rotate(18 8 22)"/>`),
-    run2: svg(`<path d="M3 15c-1-4 3-6 5-4l1 4z" fill="${SHADE}"/><ellipse cx="14" cy="19" rx="10" ry="5" fill="${BODY}"/>${HEAD}<rect x="20" y="22" width="3" height="8" rx="1.5" fill="${BODY}" transform="rotate(18 21 22)"/><rect x="7" y="22" width="3" height="8" rx="1.5" fill="${BODY}" transform="rotate(-18 8 22)"/>`),
-    sleep: svg(`<path d="M4 27c-2-2 0-6 4-5l2 5z" fill="${SHADE}"/><ellipse cx="16" cy="25" rx="11" ry="5" fill="${BODY}"/><path d="M20 21 22 17l2 3 2-3 1 4z" fill="${BODY}"/><path d="M22 24h5" stroke="#222" stroke-width="1" stroke-linecap="round"/><text x="25" y="12" font-size="7" font-family="sans-serif" fill="#9aa0b4">z</text>`),
+const spriteSets = {
+    idle: [[-3, -3]],
+    alert: [[-7, -3]],
+    scratchSelf: [[-5, 0], [-6, 0], [-7, 0]],
+    scratchWallN: [[0, 0], [0, -1]],
+    scratchWallS: [[-7, -1], [-6, -2]],
+    scratchWallE: [[-2, -2], [-2, -3]],
+    scratchWallW: [[-4, 0], [-4, -1]],
+    tired: [[-3, -2]],
+    sleeping: [[-2, 0], [-2, -1]],
+    N: [[-1, -2], [-1, -3]],
+    NE: [[0, -2], [0, -3]],
+    E: [[-3, 0], [-3, -1]],
+    SE: [[-5, -1], [-5, -2]],
+    S: [[-6, -3], [-7, -2]],
+    SW: [[-5, -3], [-6, -1]],
+    W: [[-4, -2], [-4, -3]],
+    NW: [[-1, 0], [-1, -1]],
 };
 
 const settings = definePluginSettings({
-    speed: { type: OptionType.SLIDER, description: "How fast the cat runs.", default: 10, min: 4, max: 30, step: 1 },
-    size: { type: OptionType.SLIDER, description: "Cat size in pixels.", default: 32, min: 20, max: 48, step: 2 },
+    speed: { type: OptionType.SLIDER, description: "Pixels the cat moves per frame.", default: SPEED, min: 4, max: 24, step: 1 },
+    size: { type: OptionType.SLIDER, description: "Cat size in pixels.", default: 32, min: 24, max: 64, step: 4 },
+    persistPosition: { type: OptionType.BOOLEAN, description: "Remember where the cat was between launches.", default: true },
 });
 
 export default definePlugin({
     name: "oneko",
-    description: "A small cat follows your mouse pointer around Yapper. It sits when it reaches you and sleeps when you stop moving.",
-    authors: [{ name: "OmniYap" }],
+    description: "The classic oneko cat from the original X11 toy: it chases the pointer, scratches walls, gets tired and sleeps when nothing happens.",
+    authors: [{ name: "adryd325" }, { name: "Tatsuya Kato" }, { name: "OmniYap" }],
     tags: ["fun", "appearance"],
     settings,
 
     start(ctx) {
-        const cat = document.createElement("div");
-        cat.className = "omniyap-oneko";
-        cat.setAttribute("aria-hidden", "true");
+        if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
+            ctx.log.info("oneko is off because reduced motion is requested");
+            return;
+        }
 
-        let x = 32;
-        let y = 32;
-        let mouseX = 32;
-        let mouseY = 32;
-        let idle = 0;
-        let step = 0;
-        let facing = 1;
-        let frame = "";
+        const stored = localJson("oneko", null);
+        const saved = settings.store.persistPosition ? stored.read() : null;
 
-        const show = (name) => {
-            if (frame === name) return;
-            frame = name;
-            cat.style.backgroundImage = `url("${FRAMES[name]}")`;
+        let nekoPosX = Number.isFinite(saved?.nekoPosX) ? saved.nekoPosX : 32;
+        let nekoPosY = Number.isFinite(saved?.nekoPosY) ? saved.nekoPosY : 32;
+        let mousePosX = Number.isFinite(saved?.mousePosX) ? saved.mousePosX : 0;
+        let mousePosY = Number.isFinite(saved?.mousePosY) ? saved.mousePosY : 0;
+        let frameCount = 0;
+        let idleTime = 0;
+        let idleAnimation = null;
+        let idleAnimationFrame = 0;
+        let raf = null;
+        let lastFrame = 0;
+
+        const neko = document.createElement("div");
+        neko.className = "omniyap-oneko";
+        neko.setAttribute("aria-hidden", "true");
+        neko.style.backgroundImage = `url(${spriteSheet})`;
+
+        const frameSize = () => Math.max(24, Math.min(64, Number(settings.store.size) || FRAME));
+
+        const place = () => {
+            const size = frameSize();
+            const ratio = size / FRAME;
+            neko.style.width = `${size}px`;
+            neko.style.height = `${size}px`;
+            neko.style.backgroundSize = `${FRAME * 8 * ratio}px ${FRAME * 4 * ratio}px`;
+            neko.style.left = `${nekoPosX - size / 2}px`;
+            neko.style.top = `${nekoPosY - size / 2}px`;
         };
-        const onMove = (event) => {
-            mouseX = event.clientX;
-            mouseY = event.clientY;
-            idle = 0;
+
+        const setSprite = (name, frame) => {
+            const set = spriteSets[name] || spriteSets.idle;
+            const sprite = set[frame % set.length];
+            const size = frameSize();
+            neko.style.backgroundPosition = `${sprite[0] * size}px ${sprite[1] * size}px`;
         };
 
-        document.addEventListener("mousemove", onMove, true);
-        (document.body || document.documentElement).append(cat);
-        show("sit");
+        const resetIdle = () => {
+            idleAnimation = null;
+            idleAnimationFrame = 0;
+        };
 
-        ctx.css(`
-            .omniyap-oneko{position:fixed;left:0;top:0;width:32px;height:32px;pointer-events:none;z-index:2147483000;
-                background-size:contain;background-repeat:no-repeat;image-rendering:auto;
-                filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));will-change:transform}
-        `);
-
-        const tick = () => {
-            if (document.hidden) return;
-            const size = Math.max(20, Math.min(48, Number(settings.store.size) || 32));
-            cat.style.width = `${size}px`;
-            cat.style.height = `${size}px`;
-
-            const dx = mouseX - x;
-            const dy = mouseY - y;
-            const distance = Math.hypot(dx, dy);
-            if (distance < 40) {
-                idle++;
-                show(idle > 60 ? "sleep" : "sit");
-            } else {
-                idle = 0;
-                const speed = Math.min(Number(settings.store.speed) || 10, distance);
-                x += (dx / distance) * speed;
-                y += (dy / distance) * speed;
-                if (Math.abs(dx) > 4) facing = dx > 0 ? 1 : -1;
-                show(++step % 2 ? "run1" : "run2");
+        const idle = () => {
+            idleTime += 1;
+            if (idleTime > 10 && Math.floor(Math.random() * 200) === 0 && idleAnimation === null) {
+                const options = ["sleeping", "scratchSelf"];
+                if (nekoPosX < 32) options.push("scratchWallW");
+                if (nekoPosY < 32) options.push("scratchWallN");
+                if (nekoPosX > window.innerWidth - 32) options.push("scratchWallE");
+                if (nekoPosY > window.innerHeight - 32) options.push("scratchWallS");
+                idleAnimation = options[Math.floor(Math.random() * options.length)];
             }
-            const scale = size / 32;
-            cat.style.transform = `translate(${Math.round(x - size / 2)}px,${Math.round(y - size / 2)}px) scaleX(${facing}) scale(${scale})`;
-            cat.style.transformOrigin = "center";
+            switch (idleAnimation) {
+                case "sleeping":
+                    if (idleAnimationFrame < 8) {
+                        setSprite("tired", 0);
+                        break;
+                    }
+                    setSprite("sleeping", Math.floor(idleAnimationFrame / 4));
+                    if (idleAnimationFrame > 192) resetIdle();
+                    break;
+                case "scratchWallN":
+                case "scratchWallS":
+                case "scratchWallE":
+                case "scratchWallW":
+                case "scratchSelf":
+                    setSprite(idleAnimation, idleAnimationFrame);
+                    if (idleAnimationFrame > 9) resetIdle();
+                    break;
+                default:
+                    setSprite("idle", 0);
+                    return;
+            }
+            idleAnimationFrame += 1;
         };
 
-        ctx.interval(tick, 100);
+        const frame = () => {
+            frameCount += 1;
+            const speed = Math.max(4, Math.min(24, Number(settings.store.speed) || SPEED));
+            const diffX = nekoPosX - mousePosX;
+            const diffY = nekoPosY - mousePosY;
+            const distance = Math.sqrt(diffX ** 2 + diffY ** 2);
+
+            if (distance < speed || distance < 48) {
+                idle();
+                return;
+            }
+
+            resetIdle();
+            if (idleTime > 1) {
+                setSprite("alert", 0);
+                idleTime = Math.min(idleTime, 7) - 1;
+                return;
+            }
+
+            let direction = "";
+            direction += diffY / distance > 0.5 ? "N" : "";
+            direction += diffY / distance < -0.5 ? "S" : "";
+            direction += diffX / distance > 0.5 ? "W" : "";
+            direction += diffX / distance < -0.5 ? "E" : "";
+            setSprite(direction, frameCount);
+
+            nekoPosX -= (diffX / distance) * speed;
+            nekoPosY -= (diffY / distance) * speed;
+            nekoPosX = Math.min(Math.max(16, nekoPosX), window.innerWidth - 16);
+            nekoPosY = Math.min(Math.max(16, nekoPosY), window.innerHeight - 16);
+            place();
+        };
+
+        const onAnimationFrame = (timestamp) => {
+            if (!neko.isConnected) return;
+            if (!lastFrame) lastFrame = timestamp;
+            if (timestamp - lastFrame > 100) {
+                lastFrame = timestamp;
+                frame();
+            }
+            raf = requestAnimationFrame(onAnimationFrame);
+        };
+
+        const onMove = (event) => {
+            mousePosX = event.clientX;
+            mousePosY = event.clientY;
+        };
+
+        document.addEventListener("mousemove", onMove);
+        (document.body || document.documentElement).appendChild(neko);
+        place();
+        setSprite("idle", 0);
+        raf = requestAnimationFrame(onAnimationFrame);
+
+        const save = () => {
+            if (!settings.store.persistPosition) return;
+            stored.write({ nekoPosX, nekoPosY, mousePosX, mousePosY, frameCount, idleTime, idleAnimation, idleAnimationFrame });
+        };
+        window.addEventListener("beforeunload", save);
+
+        ctx.cleanup(settings.onChange(() => {
+            place();
+            setSprite("idle", 0);
+        }));
         ctx.cleanup(() => {
-            document.removeEventListener("mousemove", onMove, true);
-            cat.remove();
+            save();
+            if (raf) cancelAnimationFrame(raf);
+            document.removeEventListener("mousemove", onMove);
+            window.removeEventListener("beforeunload", save);
+            neko.remove();
         });
+        ctx.css(`
+            .omniyap-oneko{position:fixed;pointer-events:none;z-index:2147483647;image-rendering:pixelated;
+                background-repeat:no-repeat;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+        `);
     },
 });

@@ -46,7 +46,8 @@ export default definePlugin({
                     return status && status !== "offline" && status !== "invisible";
                 }).length
                 : 0;
-            badge.textContent = online ? `${total} · ${online} online` : String(total);
+            const label = online ? `${total} · ${online} online` : String(total);
+            if (badge.textContent !== label) badge.textContent = label;
         };
 
         ctx.on("store:change", update);

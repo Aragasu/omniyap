@@ -45,11 +45,8 @@ export default definePlugin({
 
         const update = () => {
             if (!badge) return;
-            if (!startedAt) {
-                badge.textContent = "0:00";
-                return;
-            }
-            badge.textContent = formatDuration(Date.now() - startedAt);
+            const label = startedAt ? formatDuration(Date.now() - startedAt) : "0:00";
+            if (badge.textContent !== label) badge.textContent = label;
         };
 
         const check = () => {
@@ -66,7 +63,7 @@ export default definePlugin({
                 badge = null;
                 host = null;
             }
-            if (!active && badge) badge.textContent = "0:00";
+            if (!active && badge && badge.textContent !== "0:00") badge.textContent = "0:00";
         };
 
         ctx.onMutate(check);

@@ -10,7 +10,11 @@ export default definePlugin({
     tags: ["developer", "utility"],
 
     start(ctx) {
+        // The mod's boot code already publishes a handle with ui/finder/themes on it; extend that
+        // object instead of replacing it, and put it back when the plugin is turned off.
+        const previous = window.omniyap && typeof window.omniyap === "object" ? window.omniyap : null;
         const api = {
+            ...previous,
             version: OmniYap.version,
             store,
             settings,
@@ -53,7 +57,9 @@ export default definePlugin({
         log.info("window.omniyap is available (try omniyap.help())");
 
         ctx.cleanup(() => {
-            if (window.omniyap === api) delete window.omniyap;
+            if (window.omniyap !== api) return;
+            if (previous) window.omniyap = previous;
+            else delete window.omniyap;
         });
     },
 });

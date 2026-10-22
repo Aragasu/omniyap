@@ -13,6 +13,17 @@ const { Settings, dataDir } = require('./settings');
 
 const SITE = 'https://www.yapper.website';
 const ALLOWED = new Set(['www.yapper.website', 'yapper.website', 'rt.yapper.website', 'lk.yapper.website']);
+// Links come from message content, so anything opened in the user's browser must be a web (or mail)
+// URL. Handing an arbitrary scheme to the OS would let a message launch local files or protocol
+// handlers such as search-ms: or ms-msdt:.
+const EXTERNAL_SCHEMES = new Set(['http:', 'https:', 'mailto:']);
+const isExternalLink = (url) => {
+    try {
+        return EXTERNAL_SCHEMES.has(new URL(String(url)).protocol);
+    } catch {
+        return false;
+    }
+};
 const IS_DEV = !app.isPackaged;
 const VERSION = require('../../package.json').version;
 // build.mjs copies the icons into dist/, which is packaged inside the asar.
@@ -222,7 +233,7 @@ function createWindow() {
 
     wc.setWindowOpenHandler(({ url }) => {
         if (errorPage) {
-            if (/^https:\/\//.test(url)) void shell.openExternal(url);
+            if (/^https:\/\//.test(url) && isExternalLink(url)) void shell.openExternal(url);
             return { action: 'deny' };
         }
         try {
@@ -233,7 +244,7 @@ function createWindow() {
         } catch {
             /* not a URL */
         }
-        void shell.openExternal(url);
+        if (isExternalLink(url)) void shell.openExternal(url);
         return { action: 'deny' };
     });
 
@@ -241,7 +252,7 @@ function createWindow() {
         try {
             if (!ALLOWED.has(new URL(url).hostname)) {
                 event.preventDefault();
-                void shell.openExternal(url);
+                if (isExternalLink(url)) void shell.openExternal(url);
             }
         } catch {
             event.preventDefault();

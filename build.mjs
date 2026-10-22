@@ -27,7 +27,7 @@ const options = {
     globalName: "__OmniYapBundle",
     platform: "browser",
     target: ["chrome120"],
-    loader: { ".png": "dataurl" },
+    loader: { ".png": "dataurl", ".gif": "dataurl" },
     charset: "utf8",
     banner: { js: banner },
     legalComments: "none",

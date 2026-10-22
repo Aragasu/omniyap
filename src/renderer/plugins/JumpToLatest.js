@@ -37,22 +37,32 @@ export default definePlugin({
             (document.body || document.documentElement).appendChild(button);
         };
 
+        // Reading scroll metrics forces a layout, and the scroller can fire dozens of scroll events
+        // per frame while smooth scrolling, so the update is coalesced into one read per frame.
+        let queued = false;
         const update = () => {
+            queued = false;
             const el = document.querySelector(".messages");
             if (!el) return;
             mount(el);
             const distance = el.scrollHeight - el.scrollTop - el.clientHeight;
-            button?.classList.toggle("visible", distance > Number(settings.store.threshold || 400));
+            const visible = distance > Number(settings.store.threshold || 400);
+            if (button && button.classList.contains("visible") !== visible) button.classList.toggle("visible", visible);
+        };
+        const schedule = () => {
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(update);
         };
 
         ctx.watch(".messages", () => {
-            update();
+            schedule();
         });
-        ctx.onMutate(update);
-        const onScroll = () => update();
-        document.addEventListener("scroll", onScroll, true);
-        ctx.interval(update, 1500);
-        update();
+        ctx.onMutate(schedule);
+        const onScroll = () => schedule();
+        document.addEventListener("scroll", onScroll, { capture: true, passive: true });
+        ctx.interval(schedule, 1500);
+        schedule();
 
         ctx.css(`
             .omniyap-jump-latest{position:fixed;right:24px;bottom:88px;z-index:2147482000;display:none;
@@ -63,7 +73,7 @@ export default definePlugin({
         `);
 
         ctx.cleanup(() => {
-            document.removeEventListener("scroll", onScroll, true);
+            document.removeEventListener("scroll", onScroll, { capture: true });
             button?.remove();
         });
     },

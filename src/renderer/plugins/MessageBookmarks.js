@@ -6,6 +6,17 @@ import ui from "../ui/settings.js";
 const bookmarks = localJson("bookmarks", []);
 const MAX = 300;
 
+// Decoration runs for every visible row, so the saved ids are cached instead of re-parsing storage.
+let savedIds = null;
+const isSaved = (id) => {
+    savedIds ??= new Set(bookmarks.read().map((item) => item.id));
+    return savedIds.has(id);
+};
+const writeBookmarks = (items) => {
+    bookmarks.write(items);
+    savedIds = null;
+};
+
 function listBody(refresh) {
     const items = bookmarks.read();
     if (!items.length) return h("div", { class: "omniyap-empty" }, "No bookmarks yet. Use the ☆ action on a message.");
@@ -26,7 +37,7 @@ function listBody(refresh) {
                 h("button", {
                     class: "omniyap-btn",
                     onclick: () => {
-                        bookmarks.write(bookmarks.read().filter((entry) => entry.id !== item.id));
+                        writeBookmarks(bookmarks.read().filter((entry) => entry.id !== item.id));
                         refresh();
                     },
                 }, "Remove"),
@@ -59,15 +70,18 @@ export default definePlugin({
     start(ctx) {
         const decorate = ({ el, message, textEl }) => {
             if (el.querySelector('[data-omniyap-action="Bookmark"]')) return;
+            const messageId = el.getAttribute("data-message-id");
+            // Rows are decorated again after edits and re-renders, so start from the stored state.
+            const saved = isSaved(messageId);
             addMessageAction(el, {
                 label: "Bookmark",
                 title: "Bookmark this message",
-                html: "☆",
+                html: saved ? "★" : "☆",
                 onClick: () => {
                     const items = bookmarks.read();
-                    const id = el.getAttribute("data-message-id");
+                    const id = messageId;
                     if (items.some((item) => item.id === id)) {
-                        bookmarks.write(items.filter((item) => item.id !== id));
+                        writeBookmarks(items.filter((item) => item.id !== id));
                         ctx.toast("Bookmark removed");
                         el.querySelector('[data-omniyap-action="Bookmark"]').textContent = "☆";
                         return;
@@ -80,7 +94,7 @@ export default definePlugin({
                         text: textEl?.innerText || "",
                         at: Date.now(),
                     });
-                    bookmarks.write(items.slice(-MAX));
+                    writeBookmarks(items.slice(-MAX));
                     el.querySelector('[data-omniyap-action="Bookmark"]').textContent = "★";
                     ctx.toast("Bookmarked", { type: "success" });
                 },

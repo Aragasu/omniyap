@@ -9,6 +9,7 @@ import store from "./core/store.js";
 import { finder } from "./core/turbo.js";
 import plugins from "./core/plugins.js";
 import themes from "./core/themes.js";
+import roster from "./core/roster.js";
 import ui from "./ui/settings.js";
 
 import "./plugins/index.js";
@@ -32,11 +33,23 @@ function boot() {
     });
 
     // Start plugins right away: socket hooks and request interception need to be in place before
-    // Yapper opens its connection. DOM-dependent plugins use watchers, which handle a missing body.
-    try {
-        plugins.startEnabled();
-    } catch (err) {
-        log.error("could not start plugins", err);
+    // Yapper opens its connection. Plugins still need a root element to style and mount into, so
+    // when the bundle runs before the parser created <html> the start waits for that one node.
+    const startPlugins = () => {
+        try {
+            plugins.startEnabled();
+        } catch (err) {
+            log.error("could not start plugins", err);
+        }
+    };
+    if (document.documentElement) startPlugins();
+    else {
+        const observer = new MutationObserver(() => {
+            if (!document.documentElement) return;
+            observer.disconnect();
+            startPlugins();
+        });
+        observer.observe(document, { childList: true, subtree: true });
     }
 
     OmniYap.domReady.then(async () => {
@@ -70,6 +83,7 @@ function boot() {
         store,
         finder,
         themes,
+        roster,
         ui,
         openSettings: () => ui.open(),
         version: OmniYap.version,

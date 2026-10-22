@@ -42,8 +42,10 @@ export default definePlugin({
                 box = h("div", { class: "omniyap-sli", "aria-label": "Online friends and server count" });
             }
             const anchor = rail.querySelector(':scope > .rail-wrap:has(button.rail-item[aria-label="Direct messages"]), :scope > .rail-wrap');
-            if (anchor) anchor.after(box);
-            else rail.prepend(box);
+            // Re-inserting an element that is already in place still emits a childList mutation, which
+            // would retrigger onMutate forever. Only move it when its position is actually wrong.
+            if (anchor && box.previousElementSibling !== anchor) anchor.after(box);
+            else if (!anchor && !box.isConnected) rail.prepend(box);
 
             const data = counts();
             const mode = settings.store.mode;

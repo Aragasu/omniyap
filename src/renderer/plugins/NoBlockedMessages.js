@@ -42,7 +42,13 @@ export default definePlugin({
         };
 
         ctx.cleanup(messages.decorate(decorate));
-        ctx.on("store:change", () => messages.refresh());
+        let signature = [...blockedIds()].sort().join(",");
+        ctx.on("store:change", () => {
+            const next = [...blockedIds()].sort().join(",");
+            if (next === signature) return;
+            signature = next;
+            messages.refresh();
+        });
 
         ctx.css(`
             .msg.omniyap-blocked > .msg-body > .msg-text,

@@ -94,11 +94,19 @@ export const css = {
 const watchers = new Set();
 const mutateListeners = new Set();
 let observer = null;
-let pending = [];
+let queued = [];
+let queueSet = new Set();
+let deferred = [];
 let scheduled = false;
-let frameId = null;
-let fallbackTimer = null;
+let timer = null;
 let pendingStart = null;
+let lastPass = 0;
+
+// One observer serves every plugin, so the cost of a pass grows with the number of installed
+// plugins. Decoration does not need 60 Hz: passes are spaced out and capped in time so a page
+// that mutates constantly (a busy chat log) cannot starve the UI thread.
+const PASS_INTERVAL = 150;
+const PASS_BUDGET = 10;
 
 const hasConsumers = () => watchers.size > 0 || mutateListeners.size > 0;
 
@@ -110,12 +118,26 @@ function stopIfIdle() {
         document.removeEventListener("DOMContentLoaded", pendingStart);
         pendingStart = null;
     }
-    if (frameId !== null) cancelAnimationFrame(frameId);
-    clearTimeout(fallbackTimer);
-    frameId = null;
-    fallbackTimer = null;
+    clearTimeout(timer);
+    timer = null;
     scheduled = false;
-    pending = [];
+    queued = [];
+    queueSet = new Set();
+    deferred = [];
+}
+
+// Plugins mount their own nodes into the page. Those insertions must not feed back into the watcher
+// passes or the message decorators, or every decoration would re-trigger the pass that caused it and
+// the client would spend the whole frame budget decorating itself. Nodes inside a message row are
+// checked up to the row: the row itself may carry a plugin class (e.g. a collapsed message) while
+// still being a real container that Yapper inserts into.
+function isPluginNode(node) {
+    for (let el = node; el && el.nodeType === 1; el = el.parentElement) {
+        if (el.classList?.contains("msg")) return false;
+        const className = el.className;
+        if (typeof className === "string" && className.includes("omniyap")) return true;
+    }
+    return false;
 }
 
 function matchesDeep(node, selector, cb) {
@@ -124,50 +146,121 @@ function matchesDeep(node, selector, cb) {
     node.querySelectorAll(selector).forEach(cb);
 }
 
-function flush() {
-    if (!scheduled) return;
-    scheduled = false;
-    if (frameId !== null) cancelAnimationFrame(frameId);
-    clearTimeout(fallbackTimer);
-    frameId = null;
-    fallbackTimer = null;
-    const batch = pending;
-    pending = [];
-    if (!hasConsumers()) return stopIfIdle();
+function schedule() {
+    if (scheduled) return;
+    scheduled = true;
+    const delay = Math.max(16, PASS_INTERVAL - (performance.now() - lastPass));
+    timer = setTimeout(flush, delay);
+}
 
-    for (const watcher of watchers) {
-        for (const record of batch) {
-            for (const node of record.addedNodes) {
-                matchesDeep(node, watcher.selector, (el) => {
-                    if (watcher.seen.has(el)) return;
-                    watcher.seen.add(el);
-                    try {
-                        watcher.fn(el);
-                    } catch (err) {
-                        log.error(`watch callback failed for ${watcher.selector}`, err);
-                    }
-                });
-            }
+// Plugins react to insertions by scanning the document, so running every listener on every pass
+// costs more CPU the more plugins are installed. Each listener gets a backlog of inserted nodes
+// and passes serve a rotating slice of them, so every plugin still sees every insertion while a
+// single pass stays short.
+const backlogs = new WeakMap();
+let nextListener = 0;
+const MAX_BACKLOG = 4000;
+const LISTENER_CHUNK = 200;
+
+function queueForListeners(nodes) {
+    for (const fn of mutateListeners) {
+        let list = backlogs.get(fn);
+        if (!list) {
+            list = [];
+            backlogs.set(fn, list);
         }
+        for (const node of nodes) list.push(node);
+        if (list.length > MAX_BACKLOG) list.splice(0, list.length - MAX_BACKLOG);
     }
-    for (const fn of [...mutateListeners]) {
+}
+
+function runListeners(nodes) {
+    if (!mutateListeners.size) return;
+    if (nodes.length) queueForListeners(nodes);
+    const listeners = [...mutateListeners];
+    const count = listeners.length;
+    const deadline = performance.now() + PASS_BUDGET;
+    let served = 0;
+    for (let i = 0; i < count; i++) {
+        if (served && performance.now() >= deadline) break;
+        const fn = listeners[(nextListener + i) % count];
+        const list = backlogs.get(fn);
+        if (!list || !list.length) continue;
+        const batch = list.splice(0, Math.min(list.length, LISTENER_CHUNK));
         try {
             fn(batch);
         } catch (err) {
             log.error("onMutate callback failed", err);
         }
+        served++;
     }
+    nextListener = count ? (nextListener + served) % count : 0;
+}
+
+function flush() {
+    if (!scheduled) return;
+    scheduled = false;
+    timer = null;
+    lastPass = performance.now();
+    const nodes = deferred.length ? deferred.concat(queued) : queued;
+    deferred = [];
+    queued = [];
+    queueSet = new Set();
+    if (!hasConsumers()) return stopIfIdle();
+    if (!nodes.length) return;
+
+    // A React re-render inserts whole subtrees, so most queued nodes are descendants of another
+    // node in the same batch. Scanning the roots only turns thousands of subtree walks into a few.
+    const nodeSet = new Set(nodes);
+    const scan = nodes.filter((node) => {
+        let parent = node.parentElement;
+        while (parent) {
+            if (nodeSet.has(parent)) return false;
+            parent = parent.parentElement;
+        }
+        return true;
+    });
+
+    const deadline = lastPass + PASS_BUDGET;
+    let index = 0;
+    for (; index < scan.length; index++) {
+        if (performance.now() >= deadline) break;
+        const node = scan[index];
+        for (const watcher of watchers) {
+            matchesDeep(node, watcher.selector, (el) => {
+                if (watcher.seen.has(el)) return;
+                watcher.seen.add(el);
+                try {
+                    watcher.fn(el);
+                } catch (err) {
+                    log.error(`watch callback failed for ${watcher.selector}`, err);
+                }
+            });
+        }
+    }
+    if (index < scan.length) {
+        deferred = scan.slice(index);
+        schedule();
+    }
+    runListeners(scan);
 }
 
 function ensureObserver() {
     if (observer) return;
     observer = new MutationObserver((records) => {
         if (!hasConsumers()) return stopIfIdle();
-        for (let i = 0; i < records.length; i++) pending.push(records[i]);
-        if (scheduled) return;
-        scheduled = true;
-        if (typeof requestAnimationFrame === "function") frameId = requestAnimationFrame(flush);
-        fallbackTimer = setTimeout(flush, document.hidden ? 250 : 1000);
+        // Only element insertions matter to plugins; ignoring text and attribute changes keeps a
+        // plugin's own styling writes from re-triggering the pass that made them.
+        let added = 0;
+        for (const record of records) {
+            for (const node of record.addedNodes) {
+                if (node.nodeType !== 1 || queueSet.has(node) || isPluginNode(node)) continue;
+                queueSet.add(node);
+                queued.push(node);
+                added++;
+            }
+        }
+        if (added) schedule();
     });
     const start = () => {
         pendingStart = null;
@@ -205,12 +298,14 @@ export function watch(selector, fn) {
     };
 }
 
-/** Run fn(batch) at most once per frame while the DOM changes. */
+/** Run fn(addedNodes) after elements are inserted, at most a few times a second. */
 export function onMutate(fn) {
     mutateListeners.add(fn);
+    backlogs.set(fn, []);
     ensureObserver();
     return () => {
         mutateListeners.delete(fn);
+        backlogs.delete(fn);
         stopIfIdle();
     };
 }
@@ -285,10 +380,14 @@ export const dom = (OmniYap.dom = {
 css.set(
     "core",
     `
-.omniyap-toasts{position:fixed;right:16px;bottom:16px;z-index:2147483000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
-.omniyap-toast{pointer-events:auto;max-width:360px;padding:10px 14px;border-radius:10px;background:#242432;color:#ececf1;
+/* Above the settings panel and its dialogs, so feedback for an action taken in them is visible. */
+.omniyap-toasts{position:fixed;right:16px;bottom:16px;z-index:2147483300;display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:none}
+.omniyap-toast{pointer-events:auto;display:flex;align-items:center;gap:9px;max-width:360px;padding:10px 14px;border-radius:10px;background:#242432;color:#ececf1;
   font:500 13px/1.35 Inter,system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);animation:omniyap-in .2s ease}
-.omniyap-toast-error{border-color:#e5484d}.omniyap-toast-success{border-color:#30a46c}
+/* A status dot carries the type for colour-blind readers, not just the 1px border tint. */
+.omniyap-toast::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:#8b8d98}
+.omniyap-toast-error{border-color:#e5484d}.omniyap-toast-error::before{background:#e5484d}
+.omniyap-toast-success{border-color:#30a46c}.omniyap-toast-success::before{background:#30a46c}
 .omniyap-toast.out{opacity:0;transform:translateY(6px);transition:all .25s}
 @keyframes omniyap-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 `,
