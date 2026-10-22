@@ -1,7 +1,7 @@
 {
   "name": "omniyap",
   "productName": "OmniYap",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "OmniYap — a client modification and desktop app for Yapper, with Equicord-style plugins",
   "main": "src/main/index.js",
   "author": {
