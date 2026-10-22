@@ -203,7 +203,7 @@ export function definePlugin(definition) {
     };
     if (plugin.settings && typeof plugin.settings.__bind === "function") plugin.settings.__bind(plugin.name);
 
-    settings.applyDefault(plugin.name, !!plugin.enabledByDefault);
+    // Every plugin starts off: nothing runs until the user turns it on in the settings panel.
     registry.set(plugin.name, plugin);
     return plugin;
 }

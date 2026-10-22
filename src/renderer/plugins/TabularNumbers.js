@@ -9,7 +9,6 @@ export default definePlugin({
     description: "Uses fixed-width digits for timestamps, counters and badges so they stop shifting as numbers change.",
     authors: [{ name: "OmniYap" }],
     tags: ["appearance", "accessibility"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

@@ -27,7 +27,6 @@ export default definePlugin({
     description: "Inserts a light time divider whenever the conversation crosses into a new hour, or a new day.",
     authors: [{ name: "OmniYap" }],
     tags: ["chat", "appearance"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

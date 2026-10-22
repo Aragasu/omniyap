@@ -6,7 +6,6 @@ export default definePlugin({
     description: "Adds a Copy link action to every message, which copies a URL that jumps straight to it.",
     authors: [{ name: "OmniYap" }],
     tags: ["chat", "utility"],
-    enabledByDefault: true,
 
     start(ctx) {
         const decorate = ({ el, id, message }) => {

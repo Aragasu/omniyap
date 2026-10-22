@@ -12,7 +12,6 @@ export default definePlugin({
     description: "Notices when you have been idle for a while, nudges you once, and welcomes you back with the time you were away.",
     authors: [{ name: "OmniYap" }],
     tags: ["utility", "health"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

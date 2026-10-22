@@ -10,7 +10,6 @@ export default definePlugin({
     description: "Wraps long lines in code blocks instead of hiding them behind a horizontal scrollbar.",
     authors: [{ name: "OmniYap" }],
     tags: ["chat", "appearance", "developer"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

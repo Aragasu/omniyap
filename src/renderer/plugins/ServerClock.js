@@ -20,7 +20,6 @@ export default definePlugin({
     description: "Shows the time in another timezone in the header, so you always know what time it is for the rest of the server.",
     authors: [{ name: "OmniYap" }],
     tags: ["utility", "appearance"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

@@ -6,7 +6,6 @@ export default definePlugin({
     description: "Adds a header button that copies the id of the channel you are looking at, handy for bug reports and bots.",
     authors: [{ name: "OmniYap" }],
     tags: ["utility", "developer"],
-    enabledByDefault: true,
 
     start(ctx) {
         const mount = () => {

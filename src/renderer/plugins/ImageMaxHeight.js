@@ -10,7 +10,6 @@ export default definePlugin({
     description: "Caps how tall images, GIFs and videos can be in chat, so one photo cannot fill the whole window.",
     authors: [{ name: "OmniYap" }],
     tags: ["media", "appearance"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

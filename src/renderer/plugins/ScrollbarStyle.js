@@ -10,7 +10,6 @@ export default definePlugin({
     description: "Slimmer, rounded scrollbars that match the app's dark surface, with an optional auto-hide mode.",
     authors: [{ name: "OmniYap" }],
     tags: ["appearance"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

@@ -38,7 +38,6 @@ export default definePlugin({
     description: "Lists OmniYap and chat keyboard shortcuts in one modal, reachable from a tool entry or Ctrl+Shift+/.",
     authors: [{ name: "OmniYap" }],
     tags: ["utility", "keyboard"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

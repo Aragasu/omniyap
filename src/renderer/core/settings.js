@@ -86,18 +86,6 @@ const settings = {
         return !!(plugin && plugin.enabled);
     },
 
-    /** First run: a plugin with enabledByDefault starts on unless the user turned it off. */
-    applyDefault(name, enabledByDefault) {
-        const raw = data.plugins[name];
-        if (!raw && enabledByDefault) {
-            data.plugins[name] = { enabled: true };
-            try {
-                native.settings.set(`plugins.${name}.enabled`, true);
-            } catch {
-                /* ignore */
-            }
-        }
-    },
 };
 
 /**
@@ -158,7 +146,6 @@ export function definePluginSettings(definitions = {}) {
         },
         __bind(name) {
             pluginName = name;
-            settings.applyDefault(name, false);
         },
     };
 }

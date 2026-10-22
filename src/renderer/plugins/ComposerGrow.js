@@ -9,7 +9,6 @@ export default definePlugin({
     description: "Grows the message box as you type long messages, up to a configurable height.",
     authors: [{ name: "OmniYap" }],
     tags: ["input", "appearance"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

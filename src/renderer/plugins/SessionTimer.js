@@ -11,7 +11,6 @@ export default definePlugin({
     description: "Tracks how long this session has been open, available as a header clock and a tool that reports the total.",
     authors: [{ name: "OmniYap" }],
     tags: ["utility"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

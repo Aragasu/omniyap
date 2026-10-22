@@ -75,7 +75,6 @@ export default definePlugin({
     description: "Shows OmniYap team badges (owner, developer, contributor, translator, tester, artist) next to team members' names. Owner and developer come from the signed roster; the other roles can be bound locally.",
     authors: [{ name: "OmniYap" }],
     tags: ["appearance", "utility"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

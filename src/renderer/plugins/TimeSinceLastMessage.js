@@ -18,7 +18,6 @@ export default definePlugin({
     description: "Shows in the chat header how long the channel has been quiet, so you can tell at a glance if it is dead.",
     authors: [{ name: "OmniYap" }],
     tags: ["chat", "utility"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

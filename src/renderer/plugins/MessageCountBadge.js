@@ -10,7 +10,6 @@ export default definePlugin({
     description: "Shows how many messages are loaded for the channel you are reading, next to the channel name.",
     authors: [{ name: "OmniYap" }],
     tags: ["utility", "chat"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

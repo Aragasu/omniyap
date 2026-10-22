@@ -10,7 +10,6 @@ export default definePlugin({
     description: "Sets the size and line height of message text, so a busy chat reads the way you like it.",
     authors: [{ name: "OmniYap" }],
     tags: ["appearance", "accessibility"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

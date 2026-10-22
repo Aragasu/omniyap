@@ -166,6 +166,11 @@ const CSS = `
 .omniyap-launch img{width:26px;height:26px;border-radius:7px;display:block;filter:drop-shadow(0 1px 4px rgba(139,57,253,.35))}
 .omniyap-launch:hover img{filter:brightness(1.12) drop-shadow(0 1px 6px rgba(139,57,253,.5))}
 .omniyap-launch:focus-visible{outline:2px solid #b57bff;outline-offset:2px}
+/* When Yapper's own user bar is missing or renamed, the button anchors itself to the corner
+   instead of disappearing with it. */
+.omniyap-launch-floating{position:fixed;left:12px;bottom:12px;z-index:2147482000;width:34px;height:34px;
+  background:rgba(27,27,38,.92);border:1px solid rgba(255,255,255,.16);box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.omniyap-launch-floating img{width:26px;height:26px}
 .omniyap-tool-icon{display:inline-grid;place-items:center;width:24px;height:24px;margin-right:8px;flex:none;border-radius:7px;
   background:rgba(139,57,253,.14);color:#c9a6ff;font-size:12px;line-height:1}
 .omniyap-nav .glyph{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex:none;color:currentColor}
@@ -932,24 +937,57 @@ export function toggle() {
 
 export const isOpen = () => !!root && !root.hidden;
 
-/** Add the OmniYap launcher to Yapper's user bar and listen for the tray shortcut. */
+/**
+ * Add the OmniYap launcher to Yapper's user bar and listen for the tray shortcut. Yapper renames its
+ * markup from time to time, so a missing (or renamed) bar no longer hides the settings panel: the
+ * button pins itself to the bottom-left corner once the app shell is on screen, and moves into the
+ * bar as soon as one appears.
+ */
 export function injectLauncher() {
-    const add = () => {
-        const bar = document.querySelector(".user-bar");
-        if (!bar || bar.querySelector(".omniyap-launch")) return;
-        const button = h("button", {
-            class: "omniyap-launch",
-            title: "OmniYap settings (Ctrl+,)",
-            "aria-label": "OmniYap settings",
-            onclick: (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                open();
-            },
-        }, h("img", { src: logoUrl, alt: "", width: 26, height: 26, draggable: "false" }));
-        bar.appendChild(button);
+    const BUTTON_ID = "omniyap-launcher";
+    const BAR_SELECTORS = [".user-bar", "[class*='user-bar']", "[class*='userbar']", "[class*='user-nav']", "[class*='userNav']"];
+
+    const findBar = () => {
+        for (const selector of BAR_SELECTORS) {
+            const bar = document.querySelector(selector);
+            if (bar) return bar;
+        }
+        return null;
     };
-    dom.watch(".user-bar", add);
+
+    const makeButton = () => h("button", {
+        id: BUTTON_ID,
+        class: "omniyap-launch",
+        title: "OmniYap settings (Ctrl+,)",
+        "aria-label": "OmniYap settings",
+        onclick: (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            open();
+        },
+    }, h("img", { src: logoUrl, alt: "OY", width: 26, height: 26, draggable: "false" }));
+
+    const add = () => {
+        const bar = findBar();
+        const existing = document.getElementById(BUTTON_ID);
+        if (bar) {
+            const button = existing || makeButton();
+            button.classList.remove("omniyap-launch-floating");
+            if (button.parentElement !== bar) bar.appendChild(button);
+            return;
+        }
+        if (existing) return;
+        // The landing/login page has neither bar nor shell; only show the fallback inside the app.
+        if (!document.querySelector(".composer, .sidebar, .messages, [class*='composer']")) return;
+        const button = makeButton();
+        button.classList.add("omniyap-launch-floating");
+        document.body.appendChild(button);
+    };
+
+    for (const selector of BAR_SELECTORS) dom.watch(selector, add);
+    dom.watch(".composer, .sidebar, .messages", add);
+    setTimeout(add, 2000);
+    setTimeout(add, 6000);
     window.addEventListener("omniyap:open-settings", () => open());
     window.addEventListener("keydown", (event) => {
         if ((event.ctrlKey || event.metaKey) && !event.altKey && !event.shiftKey && event.key === ",") {

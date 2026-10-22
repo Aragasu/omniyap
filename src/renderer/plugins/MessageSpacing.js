@@ -10,7 +10,6 @@ export default definePlugin({
     description: "Tightens or loosens the gap between messages, with an option to keep grouped messages closer.",
     authors: [{ name: "OmniYap" }],
     tags: ["appearance"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

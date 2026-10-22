@@ -20,7 +20,6 @@ export default definePlugin({
     description: "Shows how long ago a message was sent: a chip on hover and the full date in the row tooltip.",
     authors: [{ name: "OmniYap" }],
     tags: ["chat", "appearance"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {

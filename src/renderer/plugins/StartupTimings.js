@@ -5,7 +5,6 @@ export default definePlugin({
     description: "Measures how long Yapper, the mod loader and the store take to become ready.",
     authors: [{ name: "OmniYap" }],
     tags: ["developer", "utility"],
-    enabledByDefault: true,
 
     start(ctx) {
         const started = OmniYap.startedAt;

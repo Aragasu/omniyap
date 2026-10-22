@@ -85,6 +85,16 @@ test("the built renderer contains every plugin", async () => {
     assert.ok(bundle.length > 100_000, "renderer bundle looks too small");
 });
 
+test("plugins start disabled until the user enables them", async () => {
+    for (const file of await readdir(pluginsDir)) {
+        if (!file.endsWith(".js")) continue;
+        const source = await readFile(path.join(pluginsDir, file), "utf8");
+        assert.equal(/enabledByDefault/.test(source), false, `${file} declares a default-enabled plugin`);
+    }
+    const settings = await read("src/renderer/core/settings.js");
+    assert.equal(/applyDefault/.test(settings), false, "the settings store must not enable plugins on first run");
+});
+
 test("main process keeps the security flags on", async () => {
     const main = await read("src/main/index.js");
     assert.match(main, /contextIsolation:\s*true/);

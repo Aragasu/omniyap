@@ -10,7 +10,6 @@ export default definePlugin({
     description: "Gives the message under the cursor a soft highlight, so it is obvious which row an action belongs to.",
     authors: [{ name: "OmniYap" }],
     tags: ["appearance", "chat"],
-    enabledByDefault: true,
     settings,
 
     start(ctx) {
