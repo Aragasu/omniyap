@@ -16,5 +16,8 @@ Yapper-Setup.*
 android/app/src/main/assets/renderer.js
 *.keystore
 *.jks
+
+# Badge roster signing key — never commit; losing it means rotating the public key
+.keys/
 .freebuff/
 links.txt

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-22",
+  "roles": {
+    "owner": [
+      "fc529a6a-ddbd-445b-8bce-18a13acca5d0"
+    ],
+    "developer": [],
+    "contributor": [],
+    "translator": [],
+    "tester": [],
+    "artist": []
+  },
+  "signature": "NxVSO7aKpR3rD-hecTUQU86X-3UllG3atcNfcaA2MdbjfkhiU3P5SREfCYBLHZ4WxwuRHQsh-z3__JRSi1RvpA"
+}

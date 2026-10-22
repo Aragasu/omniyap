@@ -5,8 +5,8 @@ Vencord/Equicord and Vesktop/Equibop, but built against Yapper's actual client.
 
 OmniYap is an Electron window around Yapper that injects a mod runtime before the page boots. It
 keeps Yapper's own desktop features (screen picker, native notifications, taskbar badge) working,
-adds a Vencord-style plugin API, and ships **97 plugins** — 61 of them ports/adaptations of Equicord
-plugins, plus 36 Yapper-specific tools that Equicord has no equivalent for.
+adds a Vencord-style plugin API, and ships **262 plugins** — 61 of them ports/adaptations of Equicord
+plugins, plus 201 Yapper-specific tools that Equicord has no equivalent for.
 
 ![OmniYap settings with the OmniYap icon and purple accent](screenshots/settings-brand.png)
 
@@ -58,7 +58,7 @@ npm run package:mac     # dmg + zip (must run on macOS to sign/notarise)
 ```
 
 Verified locally: the AppImage, `.deb` and `.tar.gz` build, and the packaged Linux app was launched and
-reported 97 plugins, a ready store and no plugin errors against the live site. The Windows installer and
+reported 262 registered plugins with no plugin errors against the live site. The Windows installer and
 portable builds are produced with Wine on Linux and included in the release. The macOS targets are
 configured but must be built and signed/notarised on macOS.
 
@@ -68,7 +68,7 @@ It has not been run on a device or emulator yet. See [docs/ANDROID.md](docs/ANDR
 
 ## Plugins
 
-97 plugins live in [`src/renderer/plugins/`](src/renderer/plugins). Each file is a self-contained
+262 plugins live in [`src/renderer/plugins/`](src/renderer/plugins). Each file is a self-contained
 `definePlugin({...})` module. A few highlights:
 
 | Plugin | What it does |
@@ -87,6 +87,13 @@ It has not been run on a device or emulator yet. See [docs/ANDROID.md](docs/ANDR
 See [docs/PLUGIN-MATRIX.md](docs/PLUGIN-MATRIX.md) for the full audit of all 365 Equicord plugin
 directories (164 base Vencord + 201 Equicord extras): 61 ported, 23 native, 67 planned, 171 blocked
 on Discord internals and 43 not applicable to Yapper.
+
+### Team badges
+
+`StaffBadges` shows owner, developer, contributor, translator, tester and artist labels. The owner and
+developer roles come from a small roster signed with a key that is not part of the app, so a fork
+cannot grant itself the owner badge by editing a list; the other roles can be bound locally. See
+[docs/BADGES.md](docs/BADGES.md) for the format, the signing workflow and key rotation.
 
 YapCord lists 110 plugins, but 19 of those are legacy `Ported_*` copies of plugins OmniYap already
 ships (`Ported_hideAttachments`, `Ported_pluginProfiles`, `Ported_unreadNavigator`, …), so its unique
@@ -112,6 +119,9 @@ scripts/         Icon generator, CDP driver, smoke test
 - The renderer bundle is injected into the page's main world, which is what makes it a client mod;
   it runs with the page's privileges, exactly like Vencord does in Discord.
 - No credentials are bundled. The app uses Yapper's normal login.
+- Official team badges are granted by a roster signed with a key held outside the repository, so
+  editing the shipped roster cannot grant a badge. A rebuilt client can still draw anything it likes;
+  see [docs/BADGES.md](docs/BADGES.md).
 
 ## Disclaimer
 
